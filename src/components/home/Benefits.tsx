@@ -2,10 +2,10 @@ import { Footprints, Layers, MoveVertical, Sparkles } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 
 const benefits = [
-  { icon: Footprints, title: "Hasta 14 pares", text: "Siete niveles con espacio para cada par." },
+  { icon: Footprints, title: "Hasta 16 pares", text: "Siete niveles con espacio para cada par." },
   { icon: Layers, title: "Melamina de 18 mm", text: "Tablero Pelíkano firme y fácil de limpiar." },
   { icon: MoveVertical, title: "Diseño vertical", text: "Aprovecha la altura con solo 46 cm de ancho." },
-  { icon: Sparkles, title: "Moderna y versátil", text: "Cinco acabados para cualquier ambiente." },
+  { icon: Sparkles, title: "Moderna y versátil", text: "Cuatro acabados para cualquier ambiente." },
 ];
 
 export function Benefits() {

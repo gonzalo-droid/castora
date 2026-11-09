@@ -30,7 +30,7 @@ export function Hero() {
           </div>
           <dl className="animate-fade-up mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-line pt-6 [animation-delay:320ms]">
             {[
-              ["14", "pares"],
+              ["16", "pares"],
               ["18 mm", "melamina"],
               [String(p.variants.length), "acabados"],
             ].map(([value, label]) => (

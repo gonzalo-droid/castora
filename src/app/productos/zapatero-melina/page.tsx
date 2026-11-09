@@ -13,7 +13,7 @@ const product = getProduct("zapatero-melina");
 export const metadata = pageMetadata({
   title: "Zapatero Melina, zapatero de melamina en Lima",
   description:
-    "Zapatero vertical de melamina Pelíkano de 18 mm: 130 × 46 × 30 cm, 7 niveles, hasta 14 pares. Cinco colores, se entrega armado en Lima. Cotiza por WhatsApp.",
+    "Zapatero vertical de melamina Pelíkano de 18 mm: 130 × 46 × 30 cm, 7 niveles, hasta 16 pares. Cuatro colores, se entrega armado en Lima. Cotiza por WhatsApp.",
   path: "/productos/zapatero-melina",
   image: { url: "/og-zapatero-melina.jpg", width: 1200, height: 630, alt: "Zapatero Melina en cuatro colores" },
 });

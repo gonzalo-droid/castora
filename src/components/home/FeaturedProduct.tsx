@@ -18,7 +18,7 @@ export function FeaturedProduct() {
               eyebrow="Producto destacado"
               title={
                 <>
-                  Un mismo diseño, <em className="text-brand">cinco acabados</em>
+                  Un mismo diseño, <em className="text-brand">cuatro acabados</em>
                 </>
               }
               description={p.shortDescription}
@@ -29,7 +29,7 @@ export function FeaturedProduct() {
           </Reveal>
         </div>
 
-        <ul className="-mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-5 md:overflow-visible md:px-0 md:pb-0">
+        <ul className="-mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0 md:pb-0">
           {p.variants.map((v, i) => {
             const img = v.images.find((im) => !im.lifestyle) ?? v.images[0];
             return (
@@ -40,7 +40,7 @@ export function FeaturedProduct() {
                       src={img.src}
                       alt={img.alt}
                       fill
-                      sizes="(min-width: 768px) 20vw, 62vw"
+                      sizes="(min-width: 768px) 25vw, 62vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     />
                   </div>

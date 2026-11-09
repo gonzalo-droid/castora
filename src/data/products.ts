@@ -55,7 +55,7 @@ export const products: Product[] = [
     category: "Organización · Zapateros",
     tagline: "Primer lanzamiento",
     shortDescription:
-      "Zapatero vertical de melamina con estantes asimétricos. Ordena hasta 14 pares en muy poco espacio.",
+      "Zapatero vertical de melamina con estantes asimétricos. Ordena hasta 16 pares en muy poco espacio.",
     description: [
       "Melina nace para ese rincón de la entrada o del dormitorio donde los zapatos siempre terminan amontonados. Su estructura vertical aprovecha la altura y ocupa muy poco espacio en el piso.",
       "Los estantes alternados a cada lado de la columna central dejan cada par a la vista y fácil de tomar. La repisa superior, con bordes laterales, sirve para llaves, plantas o accesorios.",
@@ -105,25 +105,18 @@ export const products: Product[] = [
           { src: `${dir}/blanco-medidas.jpg`, alt: "Zapatero Melina color Blanco con su altura de 130 cm", ...hd },
         ],
       },
-      {
-        id: "blanco-veteado",
-        name: "Blanco Veteado",
-        swatch: "#ECE5D9",
-        availability: "made_to_order",
-        images: [{ src: `${dir}/blanco-veteado.png`, alt: "Zapatero Melina color Blanco Veteado", width: 549, height: 840 }],
-      },
     ],
     specs: [
       { label: "Material", value: "Melamina Pelíkano de 18 mm" },
       { label: "Medidas", value: "130 × 46 × 30 cm (alto × ancho × fondo)" },
       { label: "Niveles", value: "7 niveles con estantes asimétricos" },
-      { label: "Capacidad", value: "Hasta 14 pares" },
+      { label: "Capacidad", value: "Hasta 16 pares" },
       { label: "Diseño", value: "Vertical y abierto, con repisa superior" },
       { label: "Entrega", value: "Armado, listo para usar" },
     ],
     highlights: [
       "Melamina Pelíkano de 18 mm",
-      "Hasta 14 pares en 46 cm de ancho",
+      "Hasta 16 pares en 46 cm de ancho",
       "Se entrega armado",
       "Envíos en Lima",
     ],

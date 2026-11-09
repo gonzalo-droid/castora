@@ -13,8 +13,8 @@ export const siteConfig = {
 
   whatsapp: {
     // Formato internacional sin "+" ni espacios (Perú = 51).
-    number: "51942862050",
-    display: "+51 942 862 050",
+    number: "51941808373",
+    display: "+51 941 808 373",
   },
 
   // Sin correo por ahora: en null se oculta en todo el sitio.

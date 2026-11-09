@@ -107,7 +107,7 @@ export default function NosotrosPage() {
               />
             </div>
             <div className="px-6 py-12 md:px-14">
-              <SectionHeading eyebrow="Primer lanzamiento" title="Conoce el Zapatero Melina" description="Hasta 14 pares en 46 cm de ancho, en cinco acabados. Se entrega armado en Lima." />
+              <SectionHeading eyebrow="Primer lanzamiento" title="Conoce el Zapatero Melina" description="Hasta 16 pares en 46 cm de ancho, en cuatro acabados. Se entrega armado en Lima." />
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href="/productos/zapatero-melina" size="lg">
                   Ver producto <ArrowRight size={17} />
