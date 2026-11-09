@@ -52,7 +52,7 @@ export function Hero() {
               fill
               loading="eager"
               fetchPriority="high"
-              sizes="(min-width: 1024px) 480px, 90vw"
+              sizes="(min-width: 1024px) 480px, (min-width: 640px) 416px, min(352px, calc(100vw - 2.5rem))"
               className="object-cover object-[50%_35%]"
             />
           </div>

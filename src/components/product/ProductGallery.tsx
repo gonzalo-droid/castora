@@ -85,7 +85,7 @@ export function ProductGallery({ items, activeIndex, onSelect }: Props) {
               fill
               loading="eager"
               fetchPriority="high"
-              sizes="(min-width: 1024px) 560px, 100vw"
+              sizes="(min-width: 1024px) 560px, calc(100vw - 2.5rem)"
               className="object-cover transition-transform duration-200 ease-out"
               style={
                 zoom
