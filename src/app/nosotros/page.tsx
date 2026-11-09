@@ -88,7 +88,7 @@ export default function NosotrosPage() {
               <Reveal as="li" key={title} delay={i * 80} className="border-t border-line pt-8">
                 <Icon size={24} strokeWidth={1.5} className="text-brand" />
                 <h3 className="mt-5 text-2xl text-brand-deep">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{text}</p>
+                <p className="mt-3 text-base leading-relaxed text-muted md:text-sm">{text}</p>
               </Reveal>
             ))}
           </ul>

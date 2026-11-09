@@ -56,6 +56,14 @@
     letter-spacing: -0.01em;
     text-wrap: balance;
   }
+  /* Cormorant trae números de estilo antiguo (suben y bajan como minúsculas);
+     en títulos y cifras se ven mejor alineados. */
+  h1,
+  h2,
+  h3,
+  .font-serif {
+    font-variant-numeric: lining-nums;
+  }
   p {
     text-wrap: pretty;
   }

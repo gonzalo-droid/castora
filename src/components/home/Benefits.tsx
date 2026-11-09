@@ -21,8 +21,8 @@ export function Benefits() {
               <Icon size={20} strokeWidth={1.6} />
             </span>
             <div>
-              <h3 className="font-sans text-[0.95rem] font-semibold text-brand-deep">{title}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-muted">{text}</p>
+              <h3 className="font-sans text-[1.05rem] font-semibold text-brand-deep md:text-[0.95rem]">{title}</h3>
+              <p className="mt-1 text-base leading-relaxed text-muted md:text-sm">{text}</p>
             </div>
           </Reveal>
         ))}
