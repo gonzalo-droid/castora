@@ -118,8 +118,8 @@ export function Header() {
           aria-modal="true"
           aria-label="Menú"
           inert={!open}
-          className={`absolute inset-y-0 right-0 flex w-[min(22rem,88vw)] flex-col bg-cream shadow-2xl shadow-black/20 transition-transform duration-300 ease-out ${
-            open ? "translate-x-0" : "translate-x-full"
+          className={`absolute inset-y-0 right-0 flex w-[min(22rem,88vw)] flex-col bg-cream transition-[translate,box-shadow] duration-300 ease-out ${
+            open ? "translate-x-0 shadow-2xl shadow-black/20" : "translate-x-full shadow-none"
           }`}
         >
           <div className="flex h-18 shrink-0 items-center justify-between border-b border-line px-5 md:h-20">

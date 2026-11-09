@@ -40,11 +40,13 @@ export function Footer() {
                 <WhatsAppIcon size={16} /> {siteConfig.whatsapp.display}
               </a>
             </li>
-            <li>
-              <a href={`mailto:${siteConfig.email}`} className={`${linkClass} inline-flex items-center gap-2`}>
-                <Mail size={16} strokeWidth={1.7} /> {siteConfig.email}
-              </a>
-            </li>
+            {siteConfig.email && (
+              <li>
+                <a href={`mailto:${siteConfig.email}`} className={`${linkClass} inline-flex items-center gap-2`}>
+                  <Mail size={16} strokeWidth={1.7} /> {siteConfig.email}
+                </a>
+              </li>
+            )}
             <li className="text-cream/55">Envíos en {siteConfig.shipping.coverage}</li>
           </ul>
         </div>

@@ -31,11 +31,12 @@ npm run lint
 
 ## Variables de entorno
 
-Ver `.env.example`. Sin `RESEND_API_KEY`, el formulario de contacto ofrece enviar el mensaje por WhatsApp.
+Ver `.env.example`. El contacto es solo por WhatsApp y redes (no hay formulario).
 
 ## Pendiente de confirmar con Castora
 
-- Correo (`hola@castora.pe`) y cuenta de TikTok: son de ejemplo.
+- Correo: oculto (`email: null` en `site-config.ts`); poner el real para mostrarlo.
+- Cuenta de TikTok: es de ejemplo.
 - Textos de la página Nosotros: historia propuesta, sin validar.
 - Nombres de los acabados (salvo Macadamia).
 - Logo en SVG y fotos en mayor resolución (las actuales miden 549 × 840 px).

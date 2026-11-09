@@ -17,8 +17,9 @@ export const siteConfig = {
     display: "+51 942 862 050",
   },
 
-  // PROVISIONAL: correo de ejemplo, reemplazar por el real.
-  email: "hola@castora.pe",
+  // Sin correo por ahora: en null se oculta en todo el sitio.
+  // Para mostrarlo, poner el real, ej. "hola@castora.pe".
+  email: null as string | null,
 
   social: {
     instagram: "https://www.instagram.com/castora.peru/",

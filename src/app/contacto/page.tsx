@@ -3,7 +3,6 @@ import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 import { InstagramIcon, TikTokIcon } from "@/components/ui/icons";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
-import { ContactForm } from "@/components/contact/ContactForm";
 
 export const metadata = pageMetadata({
   title: "Contacto y cotizaciones",
@@ -13,18 +12,17 @@ export const metadata = pageMetadata({
 });
 
 export default function ContactoPage() {
+  const { social, email } = siteConfig;
   const channels = [
-    { icon: InstagramIcon, label: "Instagram", value: "@castora.peru", href: siteConfig.social.instagram },
-    ...(siteConfig.social.tiktok
-      ? [{ icon: TikTokIcon, label: "TikTok", value: "@castora.peru", href: siteConfig.social.tiktok }]
-      : []),
-    { icon: Mail, label: "Correo", value: siteConfig.email, href: `mailto:${siteConfig.email}` },
+    { icon: InstagramIcon, label: "Instagram", value: "@castora.peru", href: social.instagram },
+    ...(social.tiktok ? [{ icon: TikTokIcon, label: "TikTok", value: "@castora.peru", href: social.tiktok }] : []),
+    ...(email ? [{ icon: Mail, label: "Correo", value: email, href: `mailto:${email}` }] : []),
   ];
 
   return (
     <section className="container-page pt-10 pb-20 md:pt-16 md:pb-28">
-      <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-x-20 lg:gap-y-12">
-        <div className="lg:col-start-1 lg:row-start-1">
+      <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-20">
+        <div>
           <p className="eyebrow animate-fade-up">Contacto</p>
           <h1 className="animate-fade-up mt-5 text-6xl leading-none text-brand-deep [animation-delay:80ms] md:text-7xl">
             Contáctanos
@@ -39,46 +37,41 @@ export default function ContactoPage() {
             </WhatsAppLink>
             <p className="mt-3 text-sm text-muted">{siteConfig.whatsapp.display}</p>
           </div>
-
         </div>
 
-        <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:pt-8">
-          <h2 className="mb-6 text-3xl text-brand-deep">O déjanos un mensaje</h2>
-          <ContactForm />
-        </div>
-
-        <div className="lg:col-start-1 lg:row-start-2">
-          <ul className="divide-y divide-line border-y border-line">
-            {channels.map(({ icon: Icon, label, value, href }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  target={href.startsWith("mailto:") ? undefined : "_blank"}
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-4 py-5"
-                >
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-sand text-brand">
-                    <Icon size={19} />
-                  </span>
-                  <span className="flex-1">
-                    <span className="block text-xs tracking-wide text-muted uppercase">{label}</span>
-                    <span className="text-brand-deep">{value}</span>
-                  </span>
-                  <ArrowUpRight size={18} className="text-muted transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
-                </a>
-              </li>
-            ))}
-            <li className="flex items-center gap-4 py-5">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-sand text-brand">
-                <MapPin size={19} />
-              </span>
-              <span>
-                <span className="block text-xs tracking-wide text-muted uppercase">Envíos</span>
-                <span className="text-brand-deep">{siteConfig.shipping.coverage}</span>
-              </span>
+        <ul className="animate-fade-up divide-y divide-line border-y border-line [animation-delay:320ms]">
+          {channels.map(({ icon: Icon, label, value, href }) => (
+            <li key={label}>
+              <a
+                href={href}
+                target={href.startsWith("mailto:") ? undefined : "_blank"}
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 py-5"
+              >
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-sand text-brand">
+                  <Icon size={19} />
+                </span>
+                <span className="flex-1">
+                  <span className="block text-xs tracking-wide text-muted uppercase">{label}</span>
+                  <span className="text-brand-deep">{value}</span>
+                </span>
+                <ArrowUpRight
+                  size={18}
+                  className="text-muted transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand"
+                />
+              </a>
             </li>
-          </ul>
-        </div>
+          ))}
+          <li className="flex items-center gap-4 py-5">
+            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-sand text-brand">
+              <MapPin size={19} />
+            </span>
+            <span>
+              <span className="block text-xs tracking-wide text-muted uppercase">Envíos</span>
+              <span className="text-brand-deep">{siteConfig.shipping.coverage}</span>
+            </span>
+          </li>
+        </ul>
       </div>
     </section>
   );
