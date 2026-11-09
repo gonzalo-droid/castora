@@ -10,7 +10,7 @@ import { featuredProduct as p } from "@/data/products";
 export function FeaturedProduct() {
   const href = `/productos/${p.slug}`;
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-16 md:py-24">
       <div className="container-page">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <Reveal>
@@ -24,17 +24,12 @@ export function FeaturedProduct() {
               description={p.shortDescription}
             />
           </Reveal>
-          <Reveal delay={120} className="flex shrink-0 flex-col gap-3 sm:flex-row">
-            <ButtonLink href={href}>
-              Ver producto <ArrowRight size={16} />
-            </ButtonLink>
-            <WhatsAppLink context={{ kind: "availability", productName: p.name }} location="home_featured" variant="secondary">
-              Consultar disponibilidad
-            </WhatsAppLink>
+          <Reveal delay={120} className="hidden shrink-0 gap-3 md:flex">
+            <Actions href={href} />
           </Reveal>
         </div>
 
-        <ul className="-mx-5 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-5 md:overflow-visible md:px-0 md:pb-0">
+        <ul className="-mx-5 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-5 md:overflow-visible md:px-0 md:pb-0">
           {p.variants.map((v, i) => {
             const img = v.images.find((im) => !im.lifestyle) ?? v.images[0];
             return (
@@ -62,7 +57,24 @@ export function FeaturedProduct() {
             );
           })}
         </ul>
+
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row md:hidden">
+          <Actions href={href} />
+        </div>
       </div>
     </section>
+  );
+}
+
+function Actions({ href }: { href: string }) {
+  return (
+    <>
+      <ButtonLink href={href}>
+        Ver producto <ArrowRight size={16} />
+      </ButtonLink>
+      <WhatsAppLink context={{ kind: "availability", productName: p.name }} location="home_featured" variant="secondary">
+        Consultar disponibilidad
+      </WhatsAppLink>
+    </>
   );
 }

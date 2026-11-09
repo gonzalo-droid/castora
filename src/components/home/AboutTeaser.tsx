@@ -6,8 +6,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function AboutTeaser() {
   return (
-    <section className="bg-sand/60 py-20 md:py-28">
-      <div className="container-page grid items-center gap-12 md:grid-cols-2 lg:gap-20">
+    <section className="bg-sand/60 py-16 md:py-24">
+      <div className="container-page grid items-center gap-10 md:grid-cols-2 lg:gap-20">
         <Reveal className="relative mx-auto w-full max-w-md">
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl">
             <Image

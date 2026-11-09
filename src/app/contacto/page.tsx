@@ -23,8 +23,8 @@ export default function ContactoPage() {
 
   return (
     <section className="container-page pt-10 pb-20 md:pt-16 md:pb-28">
-      <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
-        <div>
+      <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-x-20 lg:gap-y-12">
+        <div className="lg:col-start-1 lg:row-start-1">
           <p className="eyebrow animate-fade-up">Contacto</p>
           <h1 className="animate-fade-up mt-5 text-6xl leading-none text-brand-deep [animation-delay:80ms] md:text-7xl">
             Contáctanos
@@ -40,7 +40,15 @@ export default function ContactoPage() {
             <p className="mt-3 text-sm text-muted">{siteConfig.whatsapp.display}</p>
           </div>
 
-          <ul className="mt-12 divide-y divide-line border-y border-line">
+        </div>
+
+        <div className="lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:pt-8">
+          <h2 className="mb-6 text-3xl text-brand-deep">O déjanos un mensaje</h2>
+          <ContactForm />
+        </div>
+
+        <div className="lg:col-start-1 lg:row-start-2">
+          <ul className="divide-y divide-line border-y border-line">
             {channels.map(({ icon: Icon, label, value, href }) => (
               <li key={label}>
                 <a
@@ -70,11 +78,6 @@ export default function ContactoPage() {
               </span>
             </li>
           </ul>
-        </div>
-
-        <div className="lg:pt-8">
-          <h2 className="mb-6 text-3xl text-brand-deep">O déjanos un mensaje</h2>
-          <ContactForm />
         </div>
       </div>
     </section>

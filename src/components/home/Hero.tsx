@@ -8,7 +8,7 @@ export function Hero() {
   const p = featuredProduct;
   return (
     <section className="relative overflow-hidden">
-      <div className="container-page grid items-center gap-12 pt-8 pb-16 md:pt-10 lg:grid-cols-[1fr_1.05fr] lg:gap-16 lg:pt-12 lg:pb-24">
+      <div className="container-page grid items-center gap-10 pt-8 pb-14 md:pt-10 md:pb-16 lg:grid-cols-[1fr_1.05fr] lg:gap-16 lg:pt-12 lg:pb-24">
         <div>
           <p className="eyebrow animate-fade-up inline-flex items-center gap-3">
             <span className="h-px w-8 bg-brand" aria-hidden="true" />
@@ -28,7 +28,7 @@ export function Hero() {
               Conocer más <ArrowRight size={17} />
             </ButtonLink>
           </div>
-          <dl className="animate-fade-up mt-12 grid max-w-md grid-cols-3 gap-4 border-t border-line pt-6 [animation-delay:320ms]">
+          <dl className="animate-fade-up mt-10 grid max-w-md grid-cols-3 gap-4 border-t border-line pt-6 [animation-delay:320ms]">
             {[
               ["14", "pares"],
               ["18 mm", "melamina"],

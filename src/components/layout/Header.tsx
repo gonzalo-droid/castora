@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 import { trackEvent } from "@/lib/analytics";
 import { InstagramIcon } from "@/components/ui/icons";
@@ -29,21 +29,25 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const closeRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    if (!open) return;
+    document.body.style.overflow = "hidden";
+    closeRef.current?.focus();
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpenPath(null);
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   return (
+    <>
     <header
       className={`sticky top-0 z-40 transition-[background-color,box-shadow] duration-300 ${
-        scrolled || open ? "bg-cream/95 shadow-[0_1px_0_var(--color-line)] backdrop-blur" : "bg-cream"
+        scrolled ? "bg-cream/95 shadow-[0_1px_0_var(--color-line)] backdrop-blur" : "bg-cream"
       }`}
     >
       <div className="container-page flex h-18 items-center justify-between gap-6 md:h-20">
@@ -97,43 +101,79 @@ export function Header() {
         </div>
       </div>
 
-      {/* Menú móvil */}
-      <div
-        id="mobile-menu"
-        className={`fixed inset-x-0 top-18 bottom-0 bg-cream transition-[opacity,visibility] duration-300 md:top-20 lg:hidden ${
-          open ? "visible opacity-100" : "invisible opacity-0"
-        }`}
-      >
-        <nav aria-label="Menú móvil" className="container-page flex h-full flex-col pt-6 pb-10">
-          <ul className="flex flex-col">
-            {siteConfig.nav.map((item, i) => (
-              <li key={item.href} className="border-b border-line">
-                <Link
-                  href={item.href}
-                  aria-current={isActive(pathname, item.href) ? "page" : undefined}
-                  className="block py-5 font-serif text-3xl text-brand-deep aria-[current=page]:text-brand"
-                  style={{ transitionDelay: `${i * 40}ms` }}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-auto flex flex-col gap-3">
-            <WhatsAppLink context={{ kind: "home" }} location="mobile_menu" size="lg">
+    </header>
+
+      {/* Menú lateral (móvil y tablet). Va fuera del <header>: su backdrop-blur
+          convertiría al header en el contenedor de los elementos "fixed". */}
+      <div className={`fixed inset-0 z-50 lg:hidden ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
+        <div
+          onClick={() => setOpen(false)}
+          className={`absolute inset-0 bg-brand-deep/40 backdrop-blur-[2px] transition-opacity duration-300 ${
+            open ? "opacity-100" : "opacity-0"
+          }`}
+        />
+        <aside
+          id="mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menú"
+          inert={!open}
+          className={`absolute inset-y-0 right-0 flex w-[min(22rem,88vw)] flex-col bg-cream shadow-2xl shadow-black/20 transition-transform duration-300 ease-out ${
+            open ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="flex h-18 shrink-0 items-center justify-between border-b border-line px-5 md:h-20">
+            <span className="eyebrow">Menú</span>
+            <button
+              ref={closeRef}
+              type="button"
+              onClick={() => setOpen(false)}
+              aria-label="Cerrar menú"
+              className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-deep transition-colors hover:bg-beige/60"
+            >
+              <X size={22} />
+            </button>
+          </div>
+
+          <nav aria-label="Menú móvil" className="flex-1 overflow-y-auto px-5 py-4">
+            <ul className="flex flex-col">
+              {siteConfig.nav.map((item) => {
+                const active = isActive(pathname, item.href);
+                return (
+                  <li key={item.href} className="border-b border-line last:border-b-0">
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      aria-current={active ? "page" : undefined}
+                      className={`flex items-center justify-between py-4 font-serif text-[1.7rem] leading-tight transition-colors ${
+                        active ? "text-brand" : "text-brand-deep hover:text-brand"
+                      }`}
+                    >
+                      {item.label}
+                      {active && <span className="h-1.5 w-1.5 rounded-full bg-brand" aria-hidden="true" />}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          <div className="flex shrink-0 flex-col gap-3 border-t border-line bg-sand/60 px-5 pt-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
+            <WhatsAppLink context={{ kind: "home" }} location="mobile_menu" size="lg" className="w-full">
               Escríbenos por WhatsApp
             </WhatsAppLink>
             <a
               href={siteConfig.social.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-13 items-center justify-center gap-2 rounded-full border border-brand/40 text-brand-dark"
+              onClick={() => trackEvent("social_click", { network: "instagram", location: "mobile_menu" })}
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-brand/40 text-sm text-brand-dark transition-colors hover:border-brand"
             >
-              <InstagramIcon size={18} /> @castora.peru
+              <InstagramIcon size={18} /> @castora.peru <ArrowUpRight size={15} className="text-muted" />
             </a>
           </div>
-        </nav>
+        </aside>
       </div>
-    </header>
+    </>
   );
 }
