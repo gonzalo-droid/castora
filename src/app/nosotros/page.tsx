@@ -14,7 +14,6 @@ export const metadata = pageMetadata({
   path: "/nosotros",
 });
 
-// BORRADOR: historia de marca propuesta, pendiente de validar con Castora.
 const values = [
   { icon: Ruler, title: "Funcionalidad", text: "Cada medida responde a un uso concreto. Si no hace la vida más fácil, no entra en el diseño." },
   { icon: Leaf, title: "Estética", text: "Líneas limpias y tonos cálidos que se integran con tu casa en lugar de competir con ella." },

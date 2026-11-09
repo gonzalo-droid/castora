@@ -36,7 +36,6 @@ Ver `.env.example`. El contacto es solo por WhatsApp y redes (no hay formulario)
 ## Pendiente de confirmar con Castora
 
 - Correo: oculto (`email: null` en `site-config.ts`); poner el real para mostrarlo.
-- Textos de la página Nosotros: historia propuesta, sin validar.
 - Nombres de los acabados (salvo Macadamia).
 - Logo en SVG y fotos en mayor resolución (las actuales miden 549 × 840 px).
 - Dominio: al tenerlo, configurar `NEXT_PUBLIC_SITE_URL` en Vercel.
