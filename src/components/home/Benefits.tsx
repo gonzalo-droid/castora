@@ -10,7 +10,10 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section aria-label="Beneficios" className="border-y border-line bg-sand/60">
+    <section aria-labelledby="beneficios" className="border-y border-line bg-sand/60">
+      <h2 id="beneficios" className="sr-only">
+        Beneficios del Zapatero Melina
+      </h2>
       <ul className="container-page grid grid-cols-2 gap-x-6 gap-y-8 py-10 md:py-14 lg:grid-cols-4">
         {benefits.map(({ icon: Icon, title, text }, i) => (
           <Reveal as="li" key={title} delay={i * 80} className="flex flex-col gap-3 lg:flex-row lg:gap-4">

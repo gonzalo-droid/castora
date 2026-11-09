@@ -46,7 +46,7 @@ export function FeaturedProduct() {
                   </div>
                   <div className="mt-4 flex items-center gap-3">
                     <span
-                      className="h-4 w-4 rounded-full ring-1 ring-black/10 ring-offset-2 ring-offset-cream"
+                      className="h-4 w-4 rounded-full ring-1 ring-black/45 ring-offset-2 ring-offset-cream"
                       style={{ background: v.swatch }}
                       aria-hidden="true"
                     />

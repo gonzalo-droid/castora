@@ -88,7 +88,7 @@ export function ProductView({ product }: { product: Product }) {
                     title={v.name}
                     onClick={() => selectVariant(v.id)}
                     className={`relative h-12 w-12 rounded-full ring-offset-[3px] ring-offset-cream transition ${
-                      selected ? "ring-2 ring-brand" : "ring-1 ring-black/15 hover:ring-brand/50"
+                      selected ? "ring-2 ring-brand" : "ring-1 ring-black/45 hover:ring-brand"
                     }`}
                     style={{ background: v.swatch }}
                   >
@@ -130,7 +130,7 @@ export function ProductView({ product }: { product: Product }) {
       {/* Barra fija en móvil */}
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-cream/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur md:hidden">
         <div className="flex items-center gap-3">
-          <span className="h-9 w-9 shrink-0 rounded-full ring-1 ring-black/10" style={{ background: variant.swatch }} aria-hidden="true" />
+          <span className="h-9 w-9 shrink-0 rounded-full ring-1 ring-black/45" style={{ background: variant.swatch }} aria-hidden="true" />
           <div className="min-w-0 flex-1 leading-tight">
             <p className="truncate text-sm font-semibold text-brand-deep">{product.name}</p>
             <p className="text-xs text-muted">{variant.name}</p>

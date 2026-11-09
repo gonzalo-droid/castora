@@ -30,7 +30,7 @@ export function FinalCta({
             className="pointer-events-none absolute -right-10 -bottom-12 w-64 opacity-[0.08] md:w-96"
           />
           <h2 className="relative mx-auto max-w-2xl text-4xl leading-tight md:text-6xl">{title}</h2>
-          <p className="relative mx-auto mt-5 max-w-lg text-cream/80">{text}</p>
+          <p className="relative mx-auto mt-5 max-w-lg text-cream">{text}</p>
           <WhatsAppLink context={context} location={location} variant="light" size="lg" className="relative mt-9">
             {button}
           </WhatsAppLink>

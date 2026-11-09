@@ -5,7 +5,8 @@ import { InstagramIcon, TikTokIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { whatsappUrl } from "@/lib/whatsapp";
 import { Logo } from "./Logo";
 
-const linkClass = "text-cream/75 transition-colors hover:text-cream";
+// En móvil cada enlace ocupa 44 px de alto para tocarlo con comodidad.
+const linkClass = "inline-flex min-h-11 items-center text-cream/75 transition-colors hover:text-cream md:min-h-0";
 
 export function Footer() {
   const { social } = siteConfig;
@@ -21,7 +22,7 @@ export function Footer() {
 
         <div>
           <h2 className="eyebrow !text-beige mb-5 font-sans">Navegación</h2>
-          <ul className="space-y-3 text-sm">
+          <ul className="text-sm md:space-y-3">
             {siteConfig.nav.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className={linkClass}>
@@ -34,7 +35,7 @@ export function Footer() {
 
         <div>
           <h2 className="eyebrow !text-beige mb-5 font-sans">Contacto</h2>
-          <ul className="space-y-3 text-sm">
+          <ul className="text-sm md:space-y-3">
             <li>
               <a href={whatsappUrl({ kind: "contact" })} target="_blank" rel="noopener noreferrer" className={`${linkClass} inline-flex items-center gap-2`}>
                 <WhatsAppIcon size={16} /> {siteConfig.whatsapp.display}
@@ -47,13 +48,13 @@ export function Footer() {
                 </a>
               </li>
             )}
-            <li className="text-cream/55">Envíos en {siteConfig.shipping.coverage}</li>
+            <li className="flex min-h-11 items-center text-cream/55 md:min-h-0">Envíos en {siteConfig.shipping.coverage}</li>
           </ul>
         </div>
 
         <div>
           <h2 className="eyebrow !text-beige mb-5 font-sans">Síguenos</h2>
-          <ul className="space-y-3 text-sm">
+          <ul className="text-sm md:space-y-3">
             <li>
               <a href={social.instagram} target="_blank" rel="noopener noreferrer" className={`${linkClass} inline-flex items-center gap-2`}>
                 <InstagramIcon size={16} /> Instagram
