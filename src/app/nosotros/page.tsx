@@ -56,11 +56,7 @@ export default function NosotrosPage() {
           <p>
             Así llegó la Melina, nuestro primer lanzamiento: un zapatero vertical que aprovecha la altura y deja cada par a la
             vista. Es el comienzo de una colección de muebles pensados para ordenar el hogar con calma y buen gusto.
-          </p>
-          <p>
-            El nombre Castora viene del castor, el gran constructor de la naturaleza: paciente, ingenioso y dedicado a crear un
-            hogar a su medida. Esa es la idea que queremos llevar a cada pieza.
-          </p>
+          </p>        
         </Reveal>
       </section>
 
