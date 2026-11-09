@@ -4,6 +4,8 @@ import { ArrowRight, Gem, LayoutGrid, Leaf, Ruler } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
+import { featuredProduct } from "@/data/products";
 
 export const metadata = pageMetadata({
   title: "Nosotros: muebles para organizar tu hogar",
@@ -107,9 +109,19 @@ export default function NosotrosPage() {
             </div>
             <div className="px-6 py-12 md:px-14">
               <SectionHeading eyebrow="Primer lanzamiento" title="Conoce el Zapatero Melina" description="Hasta 14 pares en 46 cm de ancho, en cinco acabados. Se entrega armado en Lima." />
-              <ButtonLink href="/productos/zapatero-melina" size="lg" className="mt-8">
-                Ver producto <ArrowRight size={17} />
-              </ButtonLink>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <ButtonLink href="/productos/zapatero-melina" size="lg">
+                  Ver producto <ArrowRight size={17} />
+                </ButtonLink>
+                <WhatsAppLink
+                  context={{ kind: "availability", productName: featuredProduct.name }}
+                  location="about_cta"
+                  variant="secondary"
+                  size="lg"
+                >
+                  Consultar por WhatsApp
+                </WhatsAppLink>
+              </div>
             </div>
           </Reveal>
         </div>
