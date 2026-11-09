@@ -58,8 +58,7 @@ export function organizationJsonLd() {
         url,
         logo: `${url}/brand/logo-brown.png`,
         description: siteConfig.description,
-        // Solo cuentas confirmadas: TikTok y correo aún son de ejemplo.
-        sameAs: [siteConfig.social.instagram],
+        sameAs: [siteConfig.social.instagram, siteConfig.social.tiktok].filter(Boolean),
         areaServed: { "@type": "City", name: "Lima" },
         contactPoint: {
           "@type": "ContactPoint",

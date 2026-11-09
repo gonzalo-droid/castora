@@ -23,7 +23,7 @@ export const siteConfig = {
 
   social: {
     instagram: "https://www.instagram.com/castora.peru/",
-    // PROVISIONAL: cuenta de ejemplo. Dejar en null para ocultarla.
+    // En null se oculta en todo el sitio.
     tiktok: "https://www.tiktok.com/@castora.peru" as string | null,
   },
 
