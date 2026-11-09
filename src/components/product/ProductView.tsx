@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Check, Clock, MapPin, Package } from "lucide-react";
 import { availabilityLabel, type Product } from "@/data/products";
 import { siteConfig } from "@/data/site-config";
@@ -53,6 +53,37 @@ export function ProductView({ product }: { product: Product }) {
   };
 
   const waContext = { kind: "product", productName: product.name, variantName: variant.name } as const;
+
+  // La barra fija de móvil aparece solo después de pasar el botón principal:
+  // antes tapaba las miniaturas de la galería y repetía un CTA aún no visto.
+  // Se oculta al llegar al footer para no tapar su última línea.
+  const mainCtaRef = useRef<HTMLDivElement>(null);
+  const [showBar, setShowBar] = useState(false);
+  useEffect(() => {
+    const el = mainCtaRef.current;
+    if (!el) return;
+    // Scroll en vez de IntersectionObserver: un salto directo arriba (tocar la
+    // barra de estado en iPhone) no cruza el botón y el observer no se entera.
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      // Visible entre el botón principal y el footer (que ya tiene WhatsApp).
+      const footer = document.querySelector("footer");
+      const footerInView = footer ? footer.getBoundingClientRect().top < window.innerHeight : false;
+      setShowBar(el.getBoundingClientRect().bottom < 0 && !footerInView);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -109,7 +140,7 @@ export function ProductView({ product }: { product: Product }) {
             Disponibilidad: <strong className="font-semibold">{availabilityLabel[variant.availability]}</strong>
           </p>
 
-          <div className="mt-7">
+          <div ref={mainCtaRef} className="mt-7">
             <WhatsAppLink context={waContext} location="product_main" size="lg" className="w-full">
               Pedir {variant.name} por WhatsApp
             </WhatsAppLink>
@@ -128,7 +159,13 @@ export function ProductView({ product }: { product: Product }) {
       </div>
 
       {/* Barra fija en móvil */}
-      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-line bg-cream/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur md:hidden">
+      <div
+        aria-hidden={!showBar}
+        inert={!showBar}
+        className={`fixed inset-x-0 bottom-0 z-30 border-t border-line bg-cream/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur transition-transform duration-300 ease-out md:hidden ${
+          showBar ? "translate-y-0" : "translate-y-full"
+        }`}
+      >
         <div className="flex items-center gap-3">
           <span className="h-9 w-9 shrink-0 rounded-full ring-1 ring-black/45" style={{ background: variant.swatch }} aria-hidden="true" />
           <div className="min-w-0 flex-1 leading-tight">
