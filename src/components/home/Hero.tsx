@@ -50,7 +50,8 @@ export function Hero() {
               src="/products/zapatero-melina/macadamia-ambiente.jpg"
               alt="Zapatero Melina color Macadamia con zapatos ordenados junto a la cama"
               fill
-              priority
+              loading="eager"
+              fetchPriority="high"
               sizes="(min-width: 1024px) 480px, 90vw"
               className="object-cover object-[50%_35%]"
             />

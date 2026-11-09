@@ -41,6 +41,8 @@ export default function NosotrosPage() {
               src="/products/zapatero-melina/macadamia-ambiente-2.jpg"
               alt="Zapatero Melina color Macadamia en un dormitorio"
               fill
+              loading="eager"
+              fetchPriority="high"
               sizes="(min-width: 768px) 420px, 90vw"
               className="object-cover object-[50%_30%]"
             />

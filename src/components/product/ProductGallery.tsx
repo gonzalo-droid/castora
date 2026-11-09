@@ -83,7 +83,8 @@ export function ProductGallery({ items, activeIndex, onSelect }: Props) {
               src={active.src}
               alt={active.alt}
               fill
-              priority
+              loading="eager"
+              fetchPriority="high"
               sizes="(min-width: 1024px) 560px, 100vw"
               className="object-cover transition-transform duration-200 ease-out"
               style={
