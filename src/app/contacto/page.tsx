@@ -92,7 +92,6 @@ export default function ContactoPage() {
           {/* Tarjeta del producto: da algo que ver y un camino de vuelta al catálogo. */}
           <Link
             href={productHref}
-            aria-label={`Ver producto: ${product.name}`}
             className="group grid grid-cols-[6.5rem_minmax(0,1fr)] items-center gap-5 rounded-3xl bg-sand p-4 transition-colors hover:bg-beige/70 sm:grid-cols-[8rem_minmax(0,1fr)]"
           >
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
