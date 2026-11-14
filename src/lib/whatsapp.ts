@@ -5,7 +5,11 @@ export type WhatsAppContext =
   | { kind: "home" }
   | { kind: "product"; productName: string; variantName?: string }
   | { kind: "availability"; productName: string }
-  | { kind: "contact" };
+  | { kind: "contact" }
+  | { kind: "topic"; topic: ContactTopic; productName: string };
+
+/** Temas de la página de contacto: cada uno abre WhatsApp con su mensaje listo. */
+export type ContactTopic = "quote" | "delivery" | "shipping" | "other";
 
 export function whatsappMessage(ctx: WhatsAppContext): string {
   switch (ctx.kind) {
@@ -19,6 +23,13 @@ export function whatsappMessage(ctx: WhatsAppContext): string {
       return `Hola, quisiera consultar la disponibilidad del ${ctx.productName}. ¿Qué colores tienen y en cuánto tiempo lo entregan?`;
     case "contact":
       return "Hola Castora, quisiera recibir más información sobre sus productos.";
+    case "topic":
+      return {
+        quote: `Hola, quisiera cotizar el ${ctx.productName}. Me interesa el acabado: `,
+        delivery: `Hola, quisiera saber en cuánto tiempo me llegaría el ${ctx.productName} si lo pido hoy.`,
+        shipping: `Hola, ¿hacen envío del ${ctx.productName} a mi distrito? Estoy en: `,
+        other: "Hola Castora, tengo una consulta: ",
+      }[ctx.topic];
     default:
       return "Hola Castora, quisiera más información.";
   }
