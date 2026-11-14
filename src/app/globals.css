@@ -48,11 +48,13 @@
     color: var(--color-ink);
     font-family: var(--font-sans);
   }
+  /* Cormorant es de trazo muy fino: títulos en 600 y el resto de usos en 500
+     para que se lea bien en pantallas de celular. */
   h1,
   h2,
   h3 {
     font-family: var(--font-serif);
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.01em;
     text-wrap: balance;
   }
@@ -63,6 +65,9 @@
   h3,
   .font-serif {
     font-variant-numeric: lining-nums;
+  }
+  .font-serif {
+    font-weight: 500;
   }
   p {
     text-wrap: pretty;
