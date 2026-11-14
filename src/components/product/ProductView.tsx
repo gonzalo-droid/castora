@@ -122,7 +122,8 @@ export function ProductView({ product }: { product: Product }) {
             <legend className="text-sm text-muted">
               Acabado: <span className="font-semibold text-brand-deep">{variant.name}</span>
             </legend>
-            <div className="mt-4 flex flex-wrap gap-3" role="radiogroup" aria-label="Acabado" onKeyDown={onSwatchKey}>
+            {/* Cada color muestra su nombre: así se distinguen Macadamia y Roble Natural sin tocarlos. */}
+            <div className="mt-4 flex flex-wrap gap-x-2 gap-y-3" role="radiogroup" aria-label="Acabado" onKeyDown={onSwatchKey}>
               {product.variants.map((v) => {
                 const selected = v.id === variant.id;
                 return (
@@ -132,20 +133,28 @@ export function ProductView({ product }: { product: Product }) {
                     role="radio"
                     aria-checked={selected}
                     tabIndex={selected ? 0 : -1}
-                    aria-label={v.name}
-                    title={v.name}
                     onClick={() => selectVariant(v.id)}
-                    className={`relative h-12 w-12 rounded-full ring-offset-[3px] ring-offset-cream transition ${
-                      selected ? "ring-2 ring-brand" : "ring-1 ring-black/45 hover:ring-brand"
-                    }`}
-                    style={{ background: v.swatch }}
+                    className="group flex w-[4.75rem] flex-col items-center gap-2 rounded-xl py-1 text-center"
                   >
-                    {selected && (
-                      <Check
-                        size={16}
-                        className={`absolute inset-0 m-auto ${isLight(v.swatch) ? "text-brand-deep" : "text-cream"}`}
-                      />
-                    )}
+                    <span
+                      aria-hidden="true"
+                      className={`relative h-12 w-12 rounded-full ring-offset-[3px] ring-offset-cream transition ${
+                        selected ? "ring-2 ring-brand" : "ring-1 ring-black/45 group-hover:ring-brand"
+                      }`}
+                      style={{ background: v.swatch }}
+                    >
+                      {selected && (
+                        <Check
+                          size={16}
+                          className={`absolute inset-0 m-auto ${isLight(v.swatch) ? "text-brand-deep" : "text-cream"}`}
+                        />
+                      )}
+                    </span>
+                    <span
+                      className={`text-xs leading-tight ${selected ? "font-semibold text-brand-deep" : "text-muted group-hover:text-brand-deep"}`}
+                    >
+                      {v.name}
+                    </span>
                   </button>
                 );
               })}
