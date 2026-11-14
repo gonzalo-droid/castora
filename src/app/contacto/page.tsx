@@ -138,7 +138,7 @@ export default function ContactoPage() {
                     <Icon size={19} />
                   </span>
                   <span className="flex-1">
-                    <span className="block text-xs tracking-wide text-muted uppercase">{label}</span>
+                    <span className="block text-sm text-muted">{label}</span>
                     <span className="text-brand-deep">{value}</span>
                   </span>
                   <ArrowUpRight

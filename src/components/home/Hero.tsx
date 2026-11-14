@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
+import { FinishPicker } from "@/components/ui/FinishPicker";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
 import { featuredProduct } from "@/data/products";
 import { trackEvent } from "@/lib/analytics";
@@ -33,19 +34,6 @@ export function Hero() {
     setIndex(i);
     setPreload(true);
     trackEvent("select_variant", { product: p.id, variant: finishes[i].id, location: "home_hero" });
-  };
-
-  // Grupo de radios: una sola parada de Tab; flechas, Inicio y Fin cambian el acabado.
-  const onKey = (e: ReactKeyboardEvent<HTMLDivElement>) => {
-    const steps: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
-    let next = -1;
-    if (e.key in steps) next = (index + steps[e.key] + finishes.length) % finishes.length;
-    else if (e.key === "Home") next = 0;
-    else if (e.key === "End") next = finishes.length - 1;
-    if (next < 0) return;
-    e.preventDefault();
-    select(next);
-    e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="radio"]')[next]?.focus();
   };
 
   return (
@@ -97,38 +85,12 @@ export function Hero() {
 
         {/* Selector de acabado y botones */}
         <div className="lg:col-start-1 lg:row-start-2">
-          <fieldset className="animate-fade-up [animation-delay:240ms]">
-            <legend className="text-sm text-muted">
-              Acabado: <span className="font-semibold text-brand-deep">{current.name}</span>
-            </legend>
-            <div className="mt-3 flex flex-wrap gap-x-2 gap-y-3" role="radiogroup" aria-label="Acabado" onKeyDown={onKey}>
-              {finishes.map((f, i) => {
-                const selected = i === index;
-                return (
-                  <button
-                    key={f.id}
-                    type="button"
-                    role="radio"
-                    aria-checked={selected}
-                    tabIndex={selected ? 0 : -1}
-                    onClick={() => select(i)}
-                    className="group flex w-[4.75rem] flex-col items-center gap-2 rounded-xl py-1 text-center"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className={`h-12 w-12 rounded-full ring-offset-[3px] ring-offset-cream transition ${
-                        selected ? "ring-2 ring-brand" : "ring-1 ring-black/45 group-hover:ring-brand"
-                      }`}
-                      style={{ background: f.swatch }}
-                    />
-                    <span className={`text-xs leading-tight ${selected ? "font-semibold text-brand-deep" : "text-muted group-hover:text-brand-deep"}`}>
-                      {f.name}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </fieldset>
+          <FinishPicker
+            finishes={finishes}
+            value={current.id}
+            onChange={(id) => select(finishes.findIndex((f) => f.id === id))}
+            className="animate-fade-up [animation-delay:240ms]"
+          />
 
           <div className="animate-fade-up mt-7 flex flex-col gap-3 [animation-delay:300ms] sm:flex-row">
             <WhatsAppLink

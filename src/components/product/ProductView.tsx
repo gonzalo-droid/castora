@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
-import { Check, Clock, MapPin, Package } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Clock, MapPin, Package } from "lucide-react";
 import { availabilityLabel, type Product } from "@/data/products";
 import { siteConfig } from "@/data/site-config";
 import { trackEvent } from "@/lib/analytics";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
+import { FinishPicker } from "@/components/ui/FinishPicker";
 import { ProductGallery, type GalleryItem } from "./ProductGallery";
 
 function formatPrice(value: number) {
@@ -53,22 +54,6 @@ export function ProductView({ product }: { product: Product }) {
   };
 
   const waContext = { kind: "product", productName: product.name, variantName: variant.name } as const;
-
-  // Selector de acabado: una sola parada de Tab; flechas, Inicio y Fin cambian el color.
-  const onSwatchKey = (e: ReactKeyboardEvent<HTMLDivElement>) => {
-    const steps: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
-    const variants = product.variants;
-    const current = variants.findIndex((v) => v.id === variant.id);
-    let next = -1;
-    if (e.key in steps) next = (current + steps[e.key] + variants.length) % variants.length;
-    else if (e.key === "Home") next = 0;
-    else if (e.key === "End") next = variants.length - 1;
-    if (next < 0) return;
-    e.preventDefault();
-    selectVariant(variants[next].id);
-    e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="radio"]')[next]?.focus();
-  };
-
 
   // La barra fija de móvil aparece solo después de pasar el botón principal:
   // antes tapaba las miniaturas de la galería y repetía un CTA aún no visto.
@@ -118,48 +103,7 @@ export function ProductView({ product }: { product: Product }) {
             {product.price === null && <span className="text-sm text-muted">Te respondemos por WhatsApp</span>}
           </div>
 
-          <fieldset className="mt-7">
-            <legend className="text-sm text-muted">
-              Acabado: <span className="font-semibold text-brand-deep">{variant.name}</span>
-            </legend>
-            {/* Cada color muestra su nombre: así se distinguen Macadamia y Roble Natural sin tocarlos. */}
-            <div className="mt-4 flex flex-wrap gap-x-2 gap-y-3" role="radiogroup" aria-label="Acabado" onKeyDown={onSwatchKey}>
-              {product.variants.map((v) => {
-                const selected = v.id === variant.id;
-                return (
-                  <button
-                    key={v.id}
-                    type="button"
-                    role="radio"
-                    aria-checked={selected}
-                    tabIndex={selected ? 0 : -1}
-                    onClick={() => selectVariant(v.id)}
-                    className="group flex w-[4.75rem] flex-col items-center gap-2 rounded-xl py-1 text-center"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className={`relative h-12 w-12 rounded-full ring-offset-[3px] ring-offset-cream transition ${
-                        selected ? "ring-2 ring-brand" : "ring-1 ring-black/45 group-hover:ring-brand"
-                      }`}
-                      style={{ background: v.swatch }}
-                    >
-                      {selected && (
-                        <Check
-                          size={16}
-                          className={`absolute inset-0 m-auto ${isLight(v.swatch) ? "text-brand-deep" : "text-cream"}`}
-                        />
-                      )}
-                    </span>
-                    <span
-                      className={`text-xs leading-tight ${selected ? "font-semibold text-brand-deep" : "text-muted group-hover:text-brand-deep"}`}
-                    >
-                      {v.name}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </fieldset>
+          <FinishPicker finishes={product.variants} value={variant.id} onChange={(id) => selectVariant(id)} className="mt-7" />
 
           <p className="mt-6 inline-flex items-center gap-2 text-sm text-brand-deep">
             <Clock size={16} className="text-brand" />
@@ -170,7 +114,7 @@ export function ProductView({ product }: { product: Product }) {
             <WhatsAppLink context={waContext} location="product_main" size="lg" className="w-full">
               Pedir {variant.name} por WhatsApp
             </WhatsAppLink>
-            <p className="mt-3 text-center text-xs text-muted">Te enviamos precio y fecha de entrega sin compromiso.</p>
+            <p className="mt-3 text-center text-sm text-muted">Te enviamos precio y fecha de entrega sin compromiso.</p>
           </div>
 
           <ul className="mt-8 grid gap-3 text-sm text-muted sm:grid-cols-2">
@@ -205,10 +149,4 @@ export function ProductView({ product }: { product: Product }) {
       </div>
     </>
   );
-}
-
-function isLight(hex: string) {
-  const n = parseInt(hex.slice(1), 16);
-  const [r, g, b] = [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-  return 0.299 * r + 0.587 * g + 0.114 * b > 150;
 }

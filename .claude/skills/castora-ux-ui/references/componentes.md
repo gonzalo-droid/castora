@@ -9,6 +9,7 @@ Antes de escribir markup nuevo, busca aquí. Si el inventario quedó desactualiz
 | `Button.tsx`: `buttonClass(variant, size, extra)` y `ButtonLink` | Todo botón o enlace con forma de botón | Variantes: `primary` (acción principal), `secondary` (borde), `ghost` (texto con subrayado al pasar el mouse) y `light` (sobre fondos `brand`). Tamaños: `md` (h-11) y `lg` (h-13). Para un `<button>` usa `className={buttonClass(...)}` |
 | `WhatsAppLink.tsx` | Cualquier enlace a WhatsApp | Siempre con `context` (`home`, `contact`, `availability`, `product`) y `location` (para la analítica). Hereda las variantes y tamaños de `Button`. Con `unstyled` acepta clases propias |
 | `SectionHeading.tsx` | Eyebrow + título + descripción de una sección | `as="h1"` en el encabezado de una página, `align="center"` para títulos centrados. No repitas este patrón a mano |
+| `FinishPicker.tsx` | Selector de acabado (círculos de color con su nombre) | Úsalo en cualquier lugar donde se elija un color; ya lo usan el hero y la página de producto. Columnas iguales para que los nombres de 14 px entren desde 375 px; teclado con flechas, Inicio y Fin. `isLight()` decide el color del check |
 | `Reveal.tsx` | Entrada suave al hacer scroll | `as="li"` dentro de listas, `delay` escalonado de 70–120 ms. Solo decora: el contenido debe verse sin JavaScript |
 | `icons.tsx` | Íconos de marca (WhatsApp, Instagram, TikTok) | Los demás íconos salen de `lucide-react`, con `strokeWidth` 1.5–1.7 en tamaños grandes |
 
@@ -19,7 +20,7 @@ Antes de escribir markup nuevo, busca aquí. Si el inventario quedó desactualiz
 | `Header.tsx` | Barra fija arriba con navegación de escritorio y menú lateral en móvil y tablet (fuera del `<header>`, con overlay, cierre con Escape y bloqueo de scroll) |
 | `Footer.tsx` | Navegación, contacto y redes; enlaces de 44 px de alto en móvil |
 | `Logo.tsx` | Logo con `tone` (`brown`/`cream`) y `layout` |
-| `WhatsAppButton.tsx` | Botón flotante de WhatsApp: aparece después del primer pantallazo y en móvil se oculta en el producto, donde ya está la barra "Cotizar". Revisa su lógica antes de agregar otro CTA fijo para que no se tapen |
+| `WhatsAppButton.tsx` | Botón flotante de WhatsApp. Aparece después del primer pantallazo y no se muestra en `/contacto` ni en móvil en el producto (ahí está la barra "Cotizar"). En móvil se esconde al bajar, vuelve al subir y se esconde si otro botón de WhatsApp de `main` está a la vista. Revisa esta lógica antes de agregar otro CTA fijo |
 
 ## Secciones (`src/components/home/`, `product/`, `contact/`)
 

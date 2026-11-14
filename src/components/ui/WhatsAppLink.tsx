@@ -18,6 +18,7 @@ type Props = {
   /** Clase completa para usar un estilo propio en vez del botón. */
   unstyled?: boolean;
   "aria-label"?: string;
+  id?: string;
   "aria-hidden"?: boolean;
   tabIndex?: number;
 };

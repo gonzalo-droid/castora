@@ -98,7 +98,7 @@ export function ProductDimensions({ dimensions }: { dimensions: Dimensions }) {
           <div key={t.label} className="rounded-2xl border border-line bg-sand/60 px-4 py-3">
             <dt className="sr-only">{t.label}</dt>
             <dd className="font-serif text-3xl leading-none text-brand-deep">{t.value}</dd>
-            <dd className="mt-1 text-xs text-muted">{t.label}</dd>
+            <dd className="mt-1 text-sm text-muted">{t.label}</dd>
           </div>
         ))}
       </dl>

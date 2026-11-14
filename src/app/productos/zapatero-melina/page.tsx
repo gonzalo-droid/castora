@@ -61,10 +61,10 @@ export default function ProductPage() {
         dangerouslySetInnerHTML={jsonLdScript(jsonLd)}
       />
       <div className="container-page pt-4 pb-16 md:pb-24">
-        <nav aria-label="Ruta" className="mb-6 text-sm text-muted md:mb-8">
+        <nav aria-label="Ruta" className="mb-3 text-sm text-muted md:mb-5">
           <ol className="flex items-center gap-1.5">
             <li className="flex items-center gap-1.5">
-              <Link href="/" className="hover:text-brand-deep">
+              <Link href="/" className="inline-flex min-h-11 items-center pr-1 hover:text-brand-deep">
                 Inicio
               </Link>
               <ChevronRight size={14} aria-hidden="true" />

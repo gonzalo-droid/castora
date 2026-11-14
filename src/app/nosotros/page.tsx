@@ -63,7 +63,7 @@ export default function NosotrosPage() {
         </Reveal>
       </section>
 
-      <section className="bg-brand-deep py-20 text-cream md:py-28">
+      <section className="bg-brand-deep py-16 text-cream md:py-24">
         <div className="container-page">
           <Reveal className="mx-auto max-w-3xl text-center">
             <p className="eyebrow !text-beige">Filosofía de diseño</p>
@@ -77,7 +77,7 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-      <section className="py-20 md:py-28">
+      <section className="py-16 md:py-24">
         <div className="container-page">
           <Reveal>
             <SectionHeading eyebrow="Lo que nos guía" title="Nuestros valores" align="center" />
@@ -94,7 +94,7 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-      <section className="pb-20 md:pb-28">
+      <section className="pb-16 md:pb-24">
         <div className="container-page">
           <Reveal className="grid items-center overflow-hidden rounded-[2rem] bg-sand md:grid-cols-2">
             <div className="relative aspect-[4/3] md:aspect-auto md:h-full md:min-h-[26rem]">
