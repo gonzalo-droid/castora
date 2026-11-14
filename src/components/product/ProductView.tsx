@@ -5,7 +5,7 @@ import { Check, Clock, MapPin, Package } from "lucide-react";
 import { availabilityLabel, type Product } from "@/data/products";
 import { siteConfig } from "@/data/site-config";
 import { trackEvent } from "@/lib/analytics";
-import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
+import { QuoteButton } from "@/components/quote/QuoteButton";
 import { ProductGallery, type GalleryItem } from "./ProductGallery";
 
 function formatPrice(value: number) {
@@ -52,7 +52,6 @@ export function ProductView({ product }: { product: Product }) {
     }
   };
 
-  const waContext = { kind: "product", productName: product.name, variantName: variant.name } as const;
 
   // Selector de acabado: una sola parada de Tab; flechas, Inicio y Fin cambian el color.
   const onSwatchKey = (e: ReactKeyboardEvent<HTMLDivElement>) => {
@@ -167,10 +166,10 @@ export function ProductView({ product }: { product: Product }) {
           </p>
 
           <div ref={mainCtaRef} className="mt-7">
-            <WhatsAppLink context={waContext} location="product_main" size="lg" className="w-full">
-              Pedir {variant.name} por WhatsApp
-            </WhatsAppLink>
-            <p className="mt-3 text-center text-xs text-muted">Te enviamos precio y fecha de entrega sin compromiso.</p>
+            <QuoteButton variantId={variant.id} location="product_main" size="lg" className="w-full">
+              Cotizar en {variant.name}
+            </QuoteButton>
+            <p className="mt-3 text-center text-xs text-muted">Te enviamos precio y fecha de entrega por WhatsApp, sin compromiso.</p>
           </div>
 
           <ul className="mt-8 grid gap-3 text-sm text-muted sm:grid-cols-2">
@@ -198,9 +197,9 @@ export function ProductView({ product }: { product: Product }) {
             <p className="truncate text-sm font-semibold text-brand-deep">{product.name}</p>
             <p className="text-xs text-muted">{variant.name}</p>
           </div>
-          <WhatsAppLink context={waContext} location="product_sticky">
+          <QuoteButton variantId={variant.id} location="product_sticky">
             Cotizar
-          </WhatsAppLink>
+          </QuoteButton>
         </div>
       </div>
     </>

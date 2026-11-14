@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { ArrowRight } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
-import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
+import { QuoteButton } from "@/components/quote/QuoteButton";
 import { featuredProduct } from "@/data/products";
 import { trackEvent } from "@/lib/analytics";
 
@@ -131,13 +131,9 @@ export function Hero() {
           </fieldset>
 
           <div className="animate-fade-up mt-7 flex flex-col gap-3 [animation-delay:300ms] sm:flex-row">
-            <WhatsAppLink
-              context={{ kind: "product", productName: p.name, variantName: current.name }}
-              location="home_hero"
-              size="lg"
-            >
-              Pedir {current.name} por WhatsApp
-            </WhatsAppLink>
+            <QuoteButton variantId={current.id} location="home_hero" size="lg">
+              Cotizar en {current.name}
+            </QuoteButton>
             <ButtonLink href={`/productos/${p.slug}#${current.id}`} variant="secondary" size="lg">
               Ver detalles <ArrowRight size={17} />
             </ButtonLink>

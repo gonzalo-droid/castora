@@ -39,3 +39,30 @@ export function whatsappUrl(ctxOrText: WhatsAppContext | string = { kind: "gener
   const text = typeof ctxOrText === "string" ? ctxOrText : whatsappMessage(ctxOrText);
   return `https://wa.me/${siteConfig.whatsapp.number}?text=${encodeURIComponent(text)}`;
 }
+
+/** Datos de la hoja «Arma tu consulta». Todo es opcional salvo el producto. */
+export type QuoteDetails = {
+  productName: string;
+  finishName?: string;
+  district?: string;
+  when?: string;
+  comment?: string;
+  topic?: ContactTopic;
+};
+
+/** Arma el mensaje de cotización con lo que el cliente completó en la hoja. */
+export function quoteMessage({ productName, finishName, district, when, comment, topic }: QuoteDetails): string {
+  const parts = [`Hola Castora, quiero cotizar el ${productName}${finishName ? ` en ${finishName}` : ""}.`];
+  if (district?.trim()) parts.push(`Es para ${district.trim()}.`);
+  if (when) parts.push(`Lo necesito ${when}.`);
+  if (comment?.trim()) parts.push(comment.trim());
+  parts.push(
+    topic === "delivery"
+      ? "¿En cuánto tiempo me llegaría y a qué precio?"
+      : topic === "shipping"
+        ? "¿Hacen envío a mi distrito y cuánto cuesta?"
+        : "¿Me pasan precio y fecha de entrega?",
+  );
+  return parts.join(" ");
+}
+

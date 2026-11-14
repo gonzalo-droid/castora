@@ -1,21 +1,18 @@
 import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
-import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
-import type { WhatsAppContext } from "@/lib/whatsapp";
+import { QuoteButton } from "@/components/quote/QuoteButton";
 
 type Props = {
   title?: string;
   text?: string;
   button?: string;
-  context?: WhatsAppContext;
   location?: string;
 };
 
 export function FinalCta({
   title = "¿Listo para transformar tu espacio?",
   text = "Cuéntanos qué acabado te gusta y te enviamos la cotización y los tiempos de entrega.",
-  button = "Escríbenos por WhatsApp",
-  context = { kind: "home" },
+  button = "Cotizar",
   location = "final_cta",
 }: Props) {
   return (
@@ -31,9 +28,9 @@ export function FinalCta({
           />
           <h2 className="relative mx-auto max-w-2xl text-4xl leading-tight md:text-6xl">{title}</h2>
           <p className="relative mx-auto mt-5 max-w-lg text-cream">{text}</p>
-          <WhatsAppLink context={context} location={location} variant="light" size="lg" className="relative mt-9">
+          <QuoteButton location={location} variant="light" size="lg" className="relative mt-9">
             {button}
-          </WhatsAppLink>
+          </QuoteButton>
         </Reveal>
       </div>
     </section>

@@ -4,8 +4,7 @@ import { ArrowRight, Gem, LayoutGrid, Leaf, Ruler } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
-import { featuredProduct } from "@/data/products";
+import { QuoteButton } from "@/components/quote/QuoteButton";
 
 export const metadata = pageMetadata({
   title: "Nosotros: muebles para organizar tu hogar",
@@ -112,14 +111,9 @@ export default function NosotrosPage() {
                 <ButtonLink href="/productos/zapatero-melina" size="lg">
                   Ver producto <ArrowRight size={17} />
                 </ButtonLink>
-                <WhatsAppLink
-                  context={{ kind: "availability", productName: featuredProduct.name }}
-                  location="about_cta"
-                  variant="secondary"
-                  size="lg"
-                >
-                  Consultar por WhatsApp
-                </WhatsAppLink>
+                <QuoteButton location="about_cta" variant="secondary" size="lg">
+                  Cotizar
+                </QuoteButton>
               </div>
             </div>
           </Reveal>

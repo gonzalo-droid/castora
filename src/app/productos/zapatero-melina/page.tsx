@@ -80,8 +80,7 @@ export default function ProductPage() {
       <FinalCta
         title="¿Tienes dudas sobre el Zapatero Melina?"
         text="Escríbenos y te ayudamos a elegir el acabado ideal para tu espacio."
-        button="Consultar por WhatsApp"
-        context={{ kind: "availability", productName: product.name }}
+        button="Cotizar"
         location="product_final_cta"
       />
       <div className="h-20 md:hidden" aria-hidden="true" />

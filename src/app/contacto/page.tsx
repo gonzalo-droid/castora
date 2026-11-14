@@ -7,6 +7,7 @@ import { featuredProduct as product } from "@/data/products";
 import type { ContactTopic } from "@/lib/whatsapp";
 import { InstagramIcon, TikTokIcon } from "@/components/ui/icons";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
+import { QuoteButton } from "@/components/quote/QuoteButton";
 
 export const metadata = pageMetadata({
   title: "Contacto y cotizaciones",
@@ -15,7 +16,7 @@ export const metadata = pageMetadata({
   path: "/contacto",
 });
 
-// Cada tema abre WhatsApp con su mensaje listo (ver lib/whatsapp.ts).
+// Cada tema abre la hoja «Arma tu consulta» con ese tema (ver components/quote).
 const topics: { id: ContactTopic; label: string; icon: LucideIcon }[] = [
   { id: "quote", label: "Cotizar un acabado", icon: CircleDot },
   { id: "delivery", label: "¿Cuándo me llegaría?", icon: Clock },
@@ -64,16 +65,15 @@ export default function ContactoPage() {
             <ul aria-labelledby="temas" className="mt-4 grid gap-2 sm:flex sm:flex-wrap">
               {topics.map(({ id, label, icon: Icon }) => (
                 <li key={id}>
-                  <WhatsAppLink
-                    context={{ kind: "topic", topic: id, productName: product.name }}
+                  <QuoteButton
+                    topic={id}
                     location={`contact_topic_${id}`}
-                    icon={false}
                     unstyled
                     className="inline-flex min-h-11 w-full items-center gap-2 rounded-full border border-brand/40 bg-cream px-4 text-sm text-brand-deep transition-colors hover:border-brand hover:bg-sand"
                   >
                     <Icon size={16} className="shrink-0 text-brand" aria-hidden="true" />
                     {label}
-                  </WhatsAppLink>
+                  </QuoteButton>
                 </li>
               ))}
             </ul>

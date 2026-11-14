@@ -8,6 +8,7 @@ import { siteConfig } from "@/data/site-config";
 import { trackEvent } from "@/lib/analytics";
 import { InstagramIcon, TikTokIcon } from "@/components/ui/icons";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
+import { QuoteButton } from "@/components/quote/QuoteButton";
 import { Logo } from "./Logo";
 
 function isActive(pathname: string, href: string) {
@@ -131,9 +132,9 @@ export function Header() {
               </a>
             ))}
           </div>
-          <WhatsAppLink context={{ kind: "home" }} location="header" className="max-sm:hidden">
-            WhatsApp
-          </WhatsAppLink>
+          <QuoteButton location="header" className="max-sm:px-4">
+            Cotizar
+          </QuoteButton>
           <button
             ref={triggerRef}
             type="button"
