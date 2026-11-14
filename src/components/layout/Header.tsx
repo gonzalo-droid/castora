@@ -6,13 +6,21 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 import { trackEvent } from "@/lib/analytics";
-import { InstagramIcon } from "@/components/ui/icons";
+import { InstagramIcon, TikTokIcon } from "@/components/ui/icons";
 import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
 import { Logo } from "./Logo";
 
 function isActive(pathname: string, href: string) {
   return href === "/" ? pathname === "/" : pathname.startsWith(href);
 }
+
+// Redes del header y del menú móvil (TikTok aparece solo si está configurado).
+const socials = [
+  { network: "instagram", label: "Instagram", href: siteConfig.social.instagram, Icon: InstagramIcon },
+  ...(siteConfig.social.tiktok
+    ? [{ network: "tiktok", label: "TikTok", href: siteConfig.social.tiktok, Icon: TikTokIcon }]
+    : []),
+];
 
 export function Header() {
   const pathname = usePathname();
@@ -108,16 +116,21 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2 md:gap-3">
-          <a
-            href={siteConfig.social.instagram}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Castora en Instagram"
-            onClick={() => trackEvent("social_click", { network: "instagram", location: "header" })}
-            className="hidden h-11 w-11 items-center justify-center rounded-full text-brand-dark transition-colors hover:bg-beige/60 sm:inline-flex"
-          >
-            <InstagramIcon size={20} />
-          </a>
+          <div className="hidden items-center sm:flex">
+            {socials.map(({ network, label, href, Icon }) => (
+              <a
+                key={network}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Castora en ${label}`}
+                onClick={() => trackEvent("social_click", { network, location: "header" })}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-dark transition-colors hover:bg-beige/60"
+              >
+                <Icon size={20} />
+              </a>
+            ))}
+          </div>
           <WhatsAppLink context={{ kind: "home" }} location="header" className="max-sm:hidden">
             WhatsApp
           </WhatsAppLink>
@@ -197,15 +210,20 @@ export function Header() {
             <WhatsAppLink context={{ kind: "home" }} location="mobile_menu" size="lg" className="w-full">
               Escríbenos por WhatsApp
             </WhatsAppLink>
-            <a
-              href={siteConfig.social.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackEvent("social_click", { network: "instagram", location: "mobile_menu" })}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-brand/40 text-sm text-brand-dark transition-colors hover:border-brand"
-            >
-              <InstagramIcon size={18} /> @castora.peru <ArrowUpRight size={15} className="text-muted" />
-            </a>
+            <div className={`grid gap-3 ${socials.length > 1 ? "grid-cols-2" : ""}`}>
+              {socials.map(({ network, label, href, Icon }) => (
+                <a
+                  key={network}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent("social_click", { network, location: "mobile_menu" })}
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-brand/40 text-sm text-brand-dark transition-colors hover:border-brand"
+                >
+                  <Icon size={18} /> {label} <ArrowUpRight size={15} className="text-muted" />
+                </a>
+              ))}
+            </div>
           </div>
         </aside>
       </div>
