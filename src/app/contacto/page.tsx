@@ -35,7 +35,6 @@ export default function ContactoPage() {
             <WhatsAppLink context={{ kind: "contact" }} location="contact_main" size="lg">
               Escríbenos por WhatsApp
             </WhatsAppLink>
-            <p className="mt-3 text-sm text-muted">{siteConfig.whatsapp.display}</p>
           </div>
         </div>
 
