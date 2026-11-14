@@ -39,6 +39,7 @@ export function Footer() {
             <li>
               <a href={whatsappUrl({ kind: "contact" })} target="_blank" rel="noopener noreferrer" className={`${linkClass} inline-flex items-center gap-2`}>
                 <WhatsAppIcon size={16} /> {siteConfig.whatsapp.display}
+                <span className="sr-only"> (abre WhatsApp)</span>
               </a>
             </li>
             {siteConfig.email && (

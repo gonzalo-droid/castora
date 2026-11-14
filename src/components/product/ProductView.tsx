@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { Check, Clock, MapPin, Package } from "lucide-react";
 import { availabilityLabel, type Product } from "@/data/products";
 import { siteConfig } from "@/data/site-config";
@@ -54,6 +54,22 @@ export function ProductView({ product }: { product: Product }) {
 
   const waContext = { kind: "product", productName: product.name, variantName: variant.name } as const;
 
+  // Selector de acabado: una sola parada de Tab; flechas, Inicio y Fin cambian el color.
+  const onSwatchKey = (e: ReactKeyboardEvent<HTMLDivElement>) => {
+    const steps: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+    const variants = product.variants;
+    const current = variants.findIndex((v) => v.id === variant.id);
+    let next = -1;
+    if (e.key in steps) next = (current + steps[e.key] + variants.length) % variants.length;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = variants.length - 1;
+    if (next < 0) return;
+    e.preventDefault();
+    selectVariant(variants[next].id);
+    e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="radio"]')[next]?.focus();
+  };
+
+
   // La barra fija de móvil aparece solo después de pasar el botón principal:
   // antes tapaba las miniaturas de la galería y repetía un CTA aún no visto.
   // Se oculta al llegar al footer para no tapar su última línea.
@@ -106,7 +122,7 @@ export function ProductView({ product }: { product: Product }) {
             <legend className="text-sm text-muted">
               Acabado: <span className="font-semibold text-brand-deep">{variant.name}</span>
             </legend>
-            <div className="mt-4 flex flex-wrap gap-3" role="radiogroup" aria-label="Acabado">
+            <div className="mt-4 flex flex-wrap gap-3" role="radiogroup" aria-label="Acabado" onKeyDown={onSwatchKey}>
               {product.variants.map((v) => {
                 const selected = v.id === variant.id;
                 return (
@@ -115,6 +131,7 @@ export function ProductView({ product }: { product: Product }) {
                     type="button"
                     role="radio"
                     aria-checked={selected}
+                    tabIndex={selected ? 0 : -1}
                     aria-label={v.name}
                     title={v.name}
                     onClick={() => selectVariant(v.id)}

@@ -30,16 +30,49 @@ export function Header() {
   }, []);
 
   const closeRef = useRef<HTMLButtonElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
+  // Al cerrar con Esc, la X o el fondo, el foco vuelve al botón ☰.
+  // Al navegar con un enlace no: el foco sigue a la página nueva.
+  const returnFocusRef = useRef(false);
+  const closeMenu = () => {
+    returnFocusRef.current = true;
+    setOpenPath(null);
+  };
 
   useEffect(() => {
     if (!open) return;
     document.body.style.overflow = "hidden";
+    const trigger = triggerRef.current;
     closeRef.current?.focus();
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpenPath(null);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        returnFocusRef.current = true;
+        setOpenPath(null);
+        return;
+      }
+      // Mantiene el foco dentro del menú mientras está abierto.
+      if (e.key !== "Tab" || !panelRef.current) return;
+      const items = [...panelRef.current.querySelectorAll<HTMLElement>("a[href], button:not([disabled])")];
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
+      if (returnFocusRef.current) {
+        returnFocusRef.current = false;
+        trigger?.focus();
+      }
     };
   }, [open]);
 
@@ -89,6 +122,7 @@ export function Header() {
             WhatsApp
           </WhatsAppLink>
           <button
+            ref={triggerRef}
             type="button"
             onClick={() => setOpen(!open)}
             aria-expanded={open}
@@ -107,12 +141,13 @@ export function Header() {
           convertiría al header en el contenedor de los elementos "fixed". */}
       <div className={`fixed inset-0 z-50 lg:hidden ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
         <div
-          onClick={() => setOpen(false)}
+          onClick={closeMenu}
           className={`absolute inset-0 bg-brand-deep/40 backdrop-blur-[2px] transition-opacity duration-300 ${
             open ? "opacity-100" : "opacity-0"
           }`}
         />
         <aside
+          ref={panelRef}
           id="mobile-menu"
           role="dialog"
           aria-modal="true"
@@ -127,7 +162,7 @@ export function Header() {
             <button
               ref={closeRef}
               type="button"
-              onClick={() => setOpen(false)}
+              onClick={closeMenu}
               aria-label="Cerrar menú"
               className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-deep transition-colors hover:bg-beige/60"
             >
@@ -143,7 +178,7 @@ export function Header() {
                   <li key={item.href} className="border-b border-line last:border-b-0">
                     <Link
                       href={item.href}
-                      onClick={() => setOpen(false)}
+                      onClick={() => (pathname === item.href ? closeMenu() : setOpen(false))}
                       aria-current={active ? "page" : undefined}
                       className={`flex items-center justify-between py-4 font-serif text-[1.7rem] leading-tight transition-colors ${
                         active ? "text-brand" : "text-brand-deep hover:text-brand"

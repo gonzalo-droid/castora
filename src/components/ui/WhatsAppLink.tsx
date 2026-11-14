@@ -51,6 +51,8 @@ export function WhatsAppLink({
     >
       {icon && <WhatsAppIcon size={size === "lg" ? 19 : 17} />}
       {children}
+      {/* Avisa a lectores de pantalla que sale del sitio (con aria-label propio, lo incluye ese texto). */}
+      {!rest["aria-label"] && <span className="sr-only"> (abre WhatsApp)</span>}
     </a>
   );
 }
