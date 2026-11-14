@@ -60,8 +60,10 @@ export default function ProductPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={jsonLdScript(jsonLd)}
       />
-      <div className="container-page pt-4 pb-16 md:pb-24">
-        <nav aria-label="Ruta" className="mb-6 text-sm text-muted md:mb-8">
+      <ProductView
+        product={product}
+        breadcrumb={
+          <nav aria-label="Ruta" className="mb-6 text-sm text-muted md:mb-8">
           <ol className="flex items-center gap-1.5">
             <li className="flex items-center gap-1.5">
               <Link href="/" className="hover:text-brand-deep">
@@ -73,9 +75,9 @@ export default function ProductPage() {
               {product.name}
             </li>
           </ol>
-        </nav>
-        <ProductView product={product} />
-      </div>
+          </nav>
+        }
+      />
       <ProductDetails product={product} />
       <FinalCta
         title="¿Tienes dudas sobre el Zapatero Melina?"

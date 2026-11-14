@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
-import { ArrowRight } from "lucide-react";
+import { useEffect, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import { ButtonLink } from "@/components/ui/Button";
 import { QuoteButton } from "@/components/quote/QuoteButton";
 import { featuredProduct } from "@/data/products";
@@ -49,21 +48,22 @@ export function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden">
+    // El fondo toma el tinte del acabado elegido: el único gesto llamativo del sitio.
+    <section
+      className="relative overflow-hidden bg-[var(--tint)] transition-colors duration-500 motion-reduce:transition-none"
+      style={{ "--tint": current.tint } as CSSProperties}
+    >
       <div className="container-page grid gap-x-16 gap-y-6 pt-6 pb-14 sm:gap-y-8 sm:pt-8 md:pt-10 md:pb-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:pt-12 lg:pb-24">
         {/* Titular y texto (en móvil van antes de la foto) */}
         <div className="lg:col-start-1 lg:row-start-1 lg:self-end">
           <h1 className="text-brand-deep">
-            <span className="eyebrow animate-fade-up inline-flex items-center gap-3 font-sans">
-              <span className="h-px w-8 bg-brand" aria-hidden="true" />
-              {p.name}
-            </span>{" "}
+            <span className="eyebrow animate-fade-up block font-sans">{p.name}</span>{" "}
             <span className="animate-fade-up mt-5 block text-[4.6rem] leading-[0.86] tracking-[-0.02em] [animation-delay:80ms] sm:text-8xl lg:text-[7.5rem]">
               {pairs} pares
             </span>{" "}
-            <em className="animate-fade-up mt-2 block text-[2.6rem] leading-[0.95] text-brand [animation-delay:120ms] sm:text-6xl lg:text-[4.1rem]">
+            <span className="animate-fade-up mt-2 block text-[2.6rem] leading-[0.95] text-brand-dark [animation-delay:120ms] sm:text-6xl lg:text-[4.1rem]">
               en {width} cm de ancho.
-            </em>
+            </span>
           </h1>
           {/* En escritorio el texto va bajo el titular; en móvil, después de los botones (ver abajo). */}
           <p className="animate-fade-up mt-6 max-w-md text-lg leading-relaxed text-muted [animation-delay:180ms] max-lg:hidden">
@@ -116,7 +116,7 @@ export function Hero() {
                   >
                     <span
                       aria-hidden="true"
-                      className={`h-12 w-12 rounded-full ring-offset-[3px] ring-offset-cream transition ${
+                      className={`h-12 w-12 rounded-full ring-offset-[3px] ring-offset-[var(--tint)] transition ${
                         selected ? "ring-2 ring-brand" : "ring-1 ring-black/45 group-hover:ring-brand"
                       }`}
                       style={{ background: f.swatch }}
@@ -135,7 +135,7 @@ export function Hero() {
               Cotizar en {current.name}
             </QuoteButton>
             <ButtonLink href={`/productos/${p.slug}#${current.id}`} variant="secondary" size="lg">
-              Ver detalles <ArrowRight size={17} />
+              Ver detalles
             </ButtonLink>
           </div>
 

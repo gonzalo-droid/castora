@@ -21,7 +21,6 @@ export function AboutTeaser() {
         </Reveal>
         <Reveal delay={120}>
           <SectionHeading
-            eyebrow="Sobre Castora"
             title="Muebles pensados para el día a día"
             description="Castora nace en Lima con una idea simple: que ordenar la casa sea más fácil y que los muebles que lo hacen posible también se vean bien. Diseñamos piezas funcionales, de líneas limpias, para espacios reales."
           />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent as ReactKeyboardEvent, type ReactNode } from "react";
 import { Check, Clock, MapPin, Package } from "lucide-react";
 import { availabilityLabel, type Product } from "@/data/products";
 import { siteConfig } from "@/data/site-config";
@@ -12,7 +12,7 @@ function formatPrice(value: number) {
   return new Intl.NumberFormat("es-PE", { style: "currency", currency: "PEN" }).format(value);
 }
 
-export function ProductView({ product }: { product: Product }) {
+export function ProductView({ product, breadcrumb }: { product: Product; breadcrumb?: ReactNode }) {
   const items: GalleryItem[] = useMemo(
     () => product.variants.flatMap((v) => v.images.map((img) => ({ ...img, variantId: v.id, variantName: v.name }))),
     [product],
@@ -102,11 +102,17 @@ export function ProductView({ product }: { product: Product }) {
 
   return (
     <>
+      {/* La parte superior toma el tinte del acabado elegido, como en el hero. */}
+      <section
+        className="bg-[var(--tint)] transition-colors duration-500 motion-reduce:transition-none"
+        style={{ "--tint": variant.tint } as CSSProperties}
+      >
+        <div className="container-page pt-4 pb-16 md:pb-24">
+          {breadcrumb}
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-16">
         <ProductGallery items={items} activeIndex={imageIndex} onSelect={onSelectImage} />
 
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <p className="eyebrow">{product.category}</p>
           <h1 className="mt-4 text-5xl leading-none text-brand-deep md:text-6xl">{product.name}</h1>
           <p className="mt-5 text-lg leading-relaxed text-muted">{product.shortDescription}</p>
 
@@ -137,7 +143,7 @@ export function ProductView({ product }: { product: Product }) {
                   >
                     <span
                       aria-hidden="true"
-                      className={`relative h-12 w-12 rounded-full ring-offset-[3px] ring-offset-cream transition ${
+                      className={`relative h-12 w-12 rounded-full ring-offset-[3px] ring-offset-[var(--tint)] transition ${
                         selected ? "ring-2 ring-brand" : "ring-1 ring-black/45 group-hover:ring-brand"
                       }`}
                       style={{ background: v.swatch }}
@@ -182,6 +188,9 @@ export function ProductView({ product }: { product: Product }) {
           </ul>
         </div>
       </div>
+
+        </div>
+      </section>
 
       {/* Barra fija en móvil */}
       <div

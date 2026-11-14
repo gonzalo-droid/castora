@@ -20,6 +20,8 @@ export type ProductVariant = {
   name: string;
   /** Color de muestra para el selector. */
   swatch: string;
+  /** Tinte claro del acabado: fondo del hero y del producto cuando está elegido. */
+  tint: string;
   images: ProductImage[];
   availability: Availability;
 };
@@ -72,6 +74,7 @@ export const products: Product[] = [
         id: "macadamia",
         name: "Macadamia",
         swatch: "#B8A48C",
+        tint: "#ece4d9",
         availability: "made_to_order",
         images: [
           { src: `${dir}/macadamia-ambiente.jpg`, alt: "Zapatero Melina color Macadamia con zapatos junto a la cama", width: 1051, height: 1400, lifestyle: true },
@@ -83,6 +86,7 @@ export const products: Product[] = [
         id: "nogal",
         name: "Nogal",
         swatch: "#5B4637",
+        tint: "#e5dcd4",
         availability: "made_to_order",
         images: [
           { src: `${dir}/nogal.jpg`, alt: "Zapatero Melina color Nogal", ...hd },
@@ -93,6 +97,7 @@ export const products: Product[] = [
         id: "roble",
         name: "Roble Natural",
         swatch: "#D4B68A",
+        tint: "#f1e7d5",
         availability: "made_to_order",
         images: [
           { src: `${dir}/roble.jpg`, alt: "Zapatero Melina color Roble Natural", ...hd },
@@ -103,6 +108,7 @@ export const products: Product[] = [
         id: "blanco",
         name: "Blanco",
         swatch: "#F5F4F1",
+        tint: "#ebeae6",
         availability: "made_to_order",
         images: [
           { src: `${dir}/blanco.jpg`, alt: "Zapatero Melina color Blanco", ...hd },

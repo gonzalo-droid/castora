@@ -8,7 +8,6 @@ export function ProductDetails({ product }: { product: Product }) {
     <section className="border-t border-line bg-sand/60 py-20 md:py-24">
       <div className="container-page grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
         <Reveal>
-          <p className="eyebrow mb-4">El diseño</p>
           <h2 className="text-4xl leading-tight text-brand-deep md:text-5xl">Orden a la vista, en poco espacio</h2>
           <div className="mt-6 space-y-4 leading-relaxed text-muted">
             {product.description.map((paragraph) => (

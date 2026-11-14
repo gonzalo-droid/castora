@@ -1,6 +1,6 @@
 import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
-import { ArrowRight, Gem, LayoutGrid, Leaf, Ruler } from "lucide-react";
+import { Gem, LayoutGrid, Leaf, Ruler } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -24,7 +24,6 @@ export default function NosotrosPage() {
   return (
     <>
       <section className="container-page pt-10 pb-16 text-center md:pt-16 md:pb-24">
-        <p className="eyebrow animate-fade-up">Sobre Castora</p>
         <h1 className="animate-fade-up mx-auto mt-5 max-w-3xl text-5xl leading-[1.02] text-brand-deep [animation-delay:80ms] md:text-7xl">
           Diseñamos el orden <em className="text-brand">que tu casa necesita</em>
         </h1>
@@ -49,7 +48,7 @@ export default function NosotrosPage() {
           </div>
         </Reveal>
         <Reveal delay={120} className="space-y-5 leading-relaxed text-muted">
-          <SectionHeading eyebrow="Nuestra historia" title="Empezó con una entrada llena de zapatos" className="mb-8" />
+          <SectionHeading title="Empezó con una entrada llena de zapatos" className="mb-8" />
           <p>
             Castora nació en Lima de una escena que se repite en muchas casas: zapatos acumulados junto a la puerta, sin un lugar
             propio. Buscamos un mueble que resolviera eso sin ocupar medio pasillo y que, además, se viera bien. Como no lo
@@ -65,7 +64,6 @@ export default function NosotrosPage() {
       <section className="bg-brand-deep py-20 text-cream md:py-28">
         <div className="container-page">
           <Reveal className="mx-auto max-w-3xl text-center">
-            <p className="eyebrow !text-beige">Filosofía de diseño</p>
             <blockquote className="mt-6 font-serif text-3xl leading-snug md:text-5xl">
               “Un buen mueble no se nota por lo que ocupa, sino por todo lo que ordena.”
             </blockquote>
@@ -79,7 +77,7 @@ export default function NosotrosPage() {
       <section className="py-20 md:py-28">
         <div className="container-page">
           <Reveal>
-            <SectionHeading eyebrow="Lo que nos guía" title="Nuestros valores" align="center" />
+            <SectionHeading title="Nuestros valores" align="center" />
           </Reveal>
           <ul className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {values.map(({ icon: Icon, title, text }, i) => (
@@ -106,10 +104,10 @@ export default function NosotrosPage() {
               />
             </div>
             <div className="px-6 py-12 md:px-14">
-              <SectionHeading eyebrow="Primer lanzamiento" title="Conoce el Zapatero Melina" description="Hasta 16 pares en 46 cm de ancho, en cuatro acabados. Se entrega armado en Lima." />
+              <SectionHeading title="Conoce el Zapatero Melina" description="Hasta 16 pares en 46 cm de ancho, en cuatro acabados. Se entrega armado en Lima." />
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href="/productos/zapatero-melina" size="lg">
-                  Ver producto <ArrowRight size={17} />
+                  Ver producto 
                 </ButtonLink>
                 <QuoteButton location="about_cta" variant="secondary" size="lg">
                   Cotizar

@@ -1,15 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand: #8f5e36;
+  /* Paleta tomada de los acabados de melamina + el café del logo (solo acciones). */
+  --color-brand: #8f5e36; /* café Castora: botones y enlaces */
+  --color-brand-ink: #7a4d2b; /* café más oscuro para texto chico sobre tintes (AA) */
   --color-brand-dark: #4b3021;
-  --color-brand-deep: #3a251a;
-  --color-cream: #f8f3ea;
-  --color-beige: #e8d7c5;
-  --color-sand: #f1e8dc;
-  --color-ink: #292521;
-  --color-muted: #6f6359;
-  --color-line: #e4d9cb;
+  --color-brand-deep: #2b211a; /* nogal oscuro: títulos */
+  --color-cream: #f5f4f1; /* acabado Blanco: fondo del sitio */
+  --color-beige: #ddd2c3;
+  --color-sand: #ece4d9; /* tinte Macadamia: superficies */
+  --color-ink: #2b211a;
+  --color-muted: #6a5e54;
+  --color-line: #ddd5ca;
 
   --font-serif: var(--font-cormorant), "Times New Roman", serif;
   --font-sans: var(--font-dm-sans), system-ui, sans-serif;
@@ -94,12 +96,11 @@
       padding-inline: 2.5rem;
     }
   }
+  /* Etiqueta corta sobre un título: minúscula normal y solo cuando informa algo. */
   .eyebrow {
-    font-size: 0.72rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--color-brand);
+    color: var(--color-brand-ink);
   }
 }
 

@@ -43,7 +43,6 @@ export default function ContactoPage() {
     <section className="container-page pt-10 pb-20 md:pt-16 md:pb-28">
       <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:gap-20">
         <div>
-          <p className="eyebrow animate-fade-up">Contacto</p>
           <h1 className="animate-fade-up mt-5 text-6xl leading-none text-brand-deep [animation-delay:80ms] md:text-7xl">
             Contáctanos
           </h1>

@@ -31,8 +31,7 @@ export function ProductDimensions({ dimensions }: { dimensions: Dimensions }) {
 
   return (
     <div className="rounded-3xl border border-line bg-cream p-6 md:p-8">
-      <p className="eyebrow">Medidas</p>
-      <h2 className="mt-3 text-3xl leading-tight text-brand-deep md:text-4xl">¿Entra en tu espacio?</h2>
+      <h2 className="text-3xl leading-tight text-brand-deep md:text-4xl">¿Entra en tu espacio?</h2>
 
       <svg
         viewBox={`0 0 ${viewW} ${ground + 30}`}
