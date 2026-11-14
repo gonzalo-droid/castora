@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { siteConfig } from "@/data/site-config";
 import { InstagramIcon, TikTokIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { whatsappUrl } from "@/lib/whatsapp";
@@ -73,9 +73,26 @@ export function Footer() {
       </div>
 
       <div className="border-t border-cream/10">
-        <p className="container-page py-6 text-xs text-cream/55">
-          © 2026 Castora Perú. Todos los derechos reservados.
-        </p>
+        {/* Todo alineado a la izquierda: a la derecha queda el botón flotante de WhatsApp. */}
+        <div className="container-page flex flex-col gap-1 py-6 text-xs text-cream/55 sm:flex-row sm:items-center sm:gap-3">
+          <p>© 2026 Castora Perú. Todos los derechos reservados.</p>
+          <span aria-hidden="true" className="hidden sm:inline">
+            ·
+          </span>
+          <p>
+            Desarrollado por{" "}
+            <a
+              href="https://cobayatech.com"
+              target="_blank"
+              rel="noopener"
+              className="inline-flex min-h-11 items-center gap-1 text-cream/75 underline-offset-4 transition-colors hover:text-cream hover:underline sm:min-h-0"
+            >
+              CobayaTech
+              <ArrowUpRight size={12} aria-hidden="true" />
+              <span className="sr-only">(se abre en otra pestaña)</span>
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
