@@ -8,7 +8,7 @@ import { FinalCta } from "@/components/home/FinalCta";
 export const metadata = pageMetadata({
   title: "Zapatero de melamina en Lima · Zapatero Melina | Castora Perú",
   description:
-    "Zapatero Melina de Castora: zapatero vertical de melamina de 18 mm para hasta 16 pares, en cuatro colores. Se entrega armado en Lima. Cotiza por WhatsApp.",
+    "Zapatero Melina de Castora: zapatero o zapatera vertical de melamina de 18 mm para 16 pares, en cuatro colores. Llega armado en Lima. Cotiza por WhatsApp.",
   path: "/",
   absolute: true,
 });

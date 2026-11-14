@@ -61,7 +61,7 @@ export const products: Product[] = [
     shortDescription:
       "Zapatero vertical de melamina con estantes asimétricos. Ordena hasta 16 pares en muy poco espacio.",
     description: [
-      "Melina nace para ese rincón de la entrada o del dormitorio donde los zapatos siempre terminan amontonados. Su estructura vertical aprovecha la altura y ocupa muy poco espacio en el piso.",
+      "Melina es un zapatero vertical (o zapatera, como también se le dice) pensado para ese rincón de la entrada o del dormitorio donde los zapatos siempre terminan amontonados. Su estructura vertical aprovecha la altura y ocupa muy poco espacio en el piso.",
       "Los estantes alternados a cada lado de la columna central dejan cada par a la vista y fácil de tomar. La repisa superior, con bordes laterales, sirve para llaves, plantas o accesorios.",
     ],
     price: null,
