@@ -18,6 +18,8 @@ type Props = {
   /** Clase completa para usar un estilo propio en vez del botón. */
   unstyled?: boolean;
   "aria-label"?: string;
+  "aria-hidden"?: boolean;
+  tabIndex?: number;
 };
 
 export function WhatsAppLink({
