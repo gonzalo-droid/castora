@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 import type { Product } from "@/data/products";
 import { Reveal } from "@/components/ui/Reveal";
+import { ProductDimensions } from "./ProductDimensions";
 
 export function ProductDetails({ product }: { product: Product }) {
   return (
@@ -26,7 +27,8 @@ export function ProductDetails({ product }: { product: Product }) {
           </ul>
         </Reveal>
 
-        <Reveal delay={120}>
+        <Reveal delay={120} className="grid gap-6 content-start">
+          <ProductDimensions dimensions={product.dimensions} />
           <h2 className="sr-only">Especificaciones</h2>
           <dl className="divide-y divide-line overflow-hidden rounded-3xl border border-line bg-cream">
             {product.specs.map((spec) => (

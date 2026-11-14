@@ -26,6 +26,9 @@ export type ProductVariant = {
 
 export type ProductSpec = { label: string; value: string };
 
+/** Medidas en cm, para el bloque "¿Entra en tu espacio?" (el dibujo se genera con estas proporciones). */
+export type ProductDimensions = { height: number; width: number; depth: number; levels: number; pairs: number };
+
 export type Product = {
   id: string;
   slug: string;
@@ -40,6 +43,7 @@ export type Product = {
   variants: ProductVariant[];
   defaultVariantId: string;
   specs: ProductSpec[];
+  dimensions: ProductDimensions;
   highlights: string[];
   delivery: string[];
 };
@@ -106,6 +110,7 @@ export const products: Product[] = [
         ],
       },
     ],
+    dimensions: { height: 130, width: 46, depth: 30, levels: 7, pairs: 16 },
     specs: [
       { label: "Material", value: "Melamina Pelíkano de 18 mm" },
       { label: "Medidas", value: "130 × 46 × 30 cm (alto × ancho × fondo)" },
