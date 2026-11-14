@@ -1,9 +1,9 @@
 import { jsonLdScript, organizationJsonLd, pageMetadata } from "@/lib/seo";
 import { Hero } from "@/components/home/Hero";
-import { Benefits } from "@/components/home/Benefits";
-import { FeaturedProduct } from "@/components/home/FeaturedProduct";
+import { HowItsMade } from "@/components/home/HowItsMade";
+import { HowToOrder } from "@/components/home/HowToOrder";
+import { BeforeOrder } from "@/components/home/BeforeOrder";
 import { AboutTeaser } from "@/components/home/AboutTeaser";
-import { FinalCta } from "@/components/home/FinalCta";
 
 export const metadata = pageMetadata({
   title: "Zapatero de melamina en Lima · Zapatero Melina | Castora Perú",
@@ -18,10 +18,10 @@ export default function HomePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(organizationJsonLd())} />
       <Hero />
-      <Benefits />
-      <FeaturedProduct />
+      <HowItsMade />
+      <HowToOrder location="home_steps" />
+      <BeforeOrder location="home_faq" />
       <AboutTeaser />
-      <FinalCta />
     </>
   );
 }

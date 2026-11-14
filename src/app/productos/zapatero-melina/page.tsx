@@ -6,7 +6,9 @@ import { getProduct } from "@/data/products";
 import { siteConfig } from "@/data/site-config";
 import { ProductView } from "@/components/product/ProductView";
 import { ProductDetails } from "@/components/product/ProductDetails";
-import { FinalCta } from "@/components/home/FinalCta";
+import { HowToOrder } from "@/components/home/HowToOrder";
+import { BeforeOrder } from "@/components/home/BeforeOrder";
+import { faqs } from "@/data/faq";
 
 const product = getProduct("zapatero-melina");
 
@@ -42,6 +44,11 @@ export default function ProductPage() {
         height: { "@type": "QuantitativeValue", value: d.height, unitCode: "CMT" },
         width: { "@type": "QuantitativeValue", value: d.width, unitCode: "CMT" },
         depth: { "@type": "QuantitativeValue", value: d.depth, unitCode: "CMT" },
+      },
+      // Las mismas preguntas y respuestas que se ven en «Antes de pedir».
+      {
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
       },
       // Misma ruta que las migas visibles ("Inicio › Zapatero Melina").
       {
@@ -79,12 +86,8 @@ export default function ProductPage() {
         }
       />
       <ProductDetails product={product} />
-      <FinalCta
-        title="¿Tienes dudas sobre el Zapatero Melina?"
-        text="Escríbenos y te ayudamos a elegir el acabado ideal para tu espacio."
-        button="Cotizar"
-        location="product_final_cta"
-      />
+      <HowToOrder location="product_steps" />
+      <BeforeOrder location="product_faq" />
       <div className="h-20 md:hidden" aria-hidden="true" />
     </>
   );

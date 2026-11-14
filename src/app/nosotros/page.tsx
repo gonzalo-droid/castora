@@ -1,6 +1,5 @@
 import { pageMetadata } from "@/lib/seo";
 import Image from "next/image";
-import { Gem, LayoutGrid, Leaf, Ruler } from "lucide-react";
 import { ButtonLink } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -13,11 +12,13 @@ export const metadata = pageMetadata({
   path: "/nosotros",
 });
 
-const values = [
-  { icon: Ruler, title: "Funcionalidad", text: "Cada medida responde a un uso concreto. Si no hace la vida más fácil, no entra en el diseño." },
-  { icon: Leaf, title: "Estética", text: "Líneas limpias y tonos cálidos que se integran con tu casa en lugar de competir con ella." },
-  { icon: Gem, title: "Calidad", text: "Tableros de 18 mm, cantos bien terminados y piezas que se entregan armadas y revisadas." },
-  { icon: LayoutGrid, title: "Organización", text: "Creemos que un espacio ordenado se siente más amplio, más tranquilo y más tuyo." },
+// «Del tablero a tu casa»: es una secuencia real, por eso va numerada.
+// Todo el texto sale de lo ya aprobado por Castora (antes, la sección de valores).
+const process = [
+  { title: "Diseño", text: "Cada medida responde a un uso concreto: si no hace la vida más fácil, no entra en el diseño." },
+  { title: "Tablero de 18 mm", text: "Melamina Pelíkano con cantos bien terminados, en tonos cálidos que se integran con tu casa." },
+  { title: "Armado y revisión", text: "Cada pieza se arma y se revisa antes de salir." },
+  { title: "Entrega en Lima", text: "Llega a tu casa armada, lista para usar." },
 ];
 
 export default function NosotrosPage() {
@@ -25,7 +26,7 @@ export default function NosotrosPage() {
     <>
       <section className="container-page pt-10 pb-16 text-center md:pt-16 md:pb-24">
         <h1 className="animate-fade-up mx-auto mt-5 max-w-3xl text-5xl leading-[1.02] text-brand-deep [animation-delay:80ms] md:text-7xl">
-          Diseñamos el orden <em className="text-brand">que tu casa necesita</em>
+          Diseñamos el orden que tu casa necesita
         </h1>
         <p className="animate-fade-up mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted [animation-delay:160ms]">
           Somos una marca peruana de muebles y soluciones de organización para el hogar.
@@ -61,33 +62,31 @@ export default function NosotrosPage() {
         </Reveal>
       </section>
 
-      <section className="bg-brand-deep py-20 text-cream md:py-28">
-        <div className="container-page">
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <blockquote className="mt-6 font-serif text-3xl leading-snug md:text-5xl">
-              “Un buen mueble no se nota por lo que ocupa, sino por todo lo que ordena.”
-            </blockquote>
-            <p className="mx-auto mt-8 max-w-xl text-cream/70">
-              Partimos de cómo se usa cada espacio, eliminamos lo que sobra y cuidamos que la forma acompañe a la función.
+      <section aria-labelledby="proceso" className="border-y border-line bg-sand py-16 md:py-24">
+        <div className="container-page grid gap-10 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+          <Reveal>
+            <h2 id="proceso" className="text-4xl leading-tight text-brand-deep md:text-5xl">
+              Del tablero a tu casa
+            </h2>
+            <p className="mt-4 max-w-sm text-muted">
+              Un buen mueble no se nota por lo que ocupa, sino por todo lo que ordena. Así llega la Melina a tu casa.
             </p>
           </Reveal>
-        </div>
-      </section>
-
-      <section className="py-20 md:py-28">
-        <div className="container-page">
-          <Reveal>
-            <SectionHeading title="Nuestros valores" align="center" />
-          </Reveal>
-          <ul className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map(({ icon: Icon, title, text }, i) => (
-              <Reveal as="li" key={title} delay={i * 80} className="border-t border-line pt-8">
-                <Icon size={24} strokeWidth={1.5} className="text-brand" />
-                <h3 className="mt-5 text-2xl text-brand-deep">{title}</h3>
-                <p className="mt-3 text-base leading-relaxed text-muted md:text-sm">{text}</p>
+          <ol className="border-l border-brand/40">
+            {process.map((step, i) => (
+              <Reveal as="li" key={step.title} delay={i * 80} className="relative pb-8 pl-8 last:pb-0">
+                <span
+                  aria-hidden="true"
+                  className="absolute top-1.5 -left-[0.4rem] h-3 w-3 rounded-full bg-brand ring-4 ring-sand"
+                />
+                <h3 className="font-sans text-lg font-semibold text-brand-deep">
+                  <span className="sr-only">Paso {i + 1}: </span>
+                  {step.title}
+                </h3>
+                <p className="mt-1 text-muted">{step.text}</p>
               </Reveal>
             ))}
-          </ul>
+          </ol>
         </div>
       </section>
 

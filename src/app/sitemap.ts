@@ -5,9 +5,9 @@ import { siteConfig } from "@/data/site-config";
 // Fecha del último cambio de contenido de cada página. Actualízala cuando cambie el texto
 // o las fotos de esa página (no hace falta por cambios de diseño o de código).
 const updated = {
-  home: "2026-11-13",
-  product: "2026-11-13",
-  nosotros: "2026-11-09",
+  home: "2026-11-14",
+  product: "2026-11-14",
+  nosotros: "2026-11-14",
   contacto: "2026-11-13",
 };
 
