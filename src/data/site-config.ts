@@ -7,8 +7,9 @@ export const siteConfig = {
   shortName: "Castora",
   description:
     "Muebles y soluciones de organización para el hogar, diseñados en Perú. Conoce el Zapatero Melina en melamina de 18 mm.",
-  // Sin dominio todavía: se toma de la variable de entorno en Vercel.
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://castora-alpha.vercel.app").replace(/\/$/, ""),
+  // URL pública completa, incluido el basePath de GitHub Pages (/castora).
+  // Se define en el workflow de deploy; con dominio propio será https://castorape.com.
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://gonzalo-lozg.me/castora").replace(/\/$/, ""),
   locale: "es_PE",
 
   whatsapp: {

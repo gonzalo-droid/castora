@@ -4,14 +4,24 @@ Sitio comercial de Castora (muebles de organización para el hogar). Primer prod
 
 ## Stack
 
-Next.js 16 (App Router, Cache Components) · React 19 · TypeScript · Tailwind CSS 4 · lucide-react. Despliegue en Vercel.
+Next.js 16 (App Router, export estático) · React 19 · TypeScript · Tailwind CSS 4 · lucide-react.
+
+## Publicación: GitHub Pages
+
+- Cada push a `main` corre `.github/workflows/deploy.yml`: lint, build y publicación en https://gonzalo-lozg.me/castora.
+- El sitio es 100% estático (`output: "export"` en `next.config.ts`); no hay servidor ni API.
+- Las fotos se optimizan en el build: `scripts/optimize-images.mjs` genera versiones WebP en `public/_img/` (ignorada en git) y `src/lib/image-loader.ts` elige la del ancho pedido. Corre solo antes de `dev` y `build`.
+- `castora-alpha.vercel.app` redirige con 301 a GitHub Pages (`vercel.json`).
+- Sin analítica por ahora: los eventos quedan en `window.dataLayer` (`src/lib/analytics.ts`), listos para GA4/GTM u otra herramienta.
 
 ## Desarrollo
 
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build
+npm run build    # exporta a ./out
+# Probar como en GitHub Pages:
+NEXT_PUBLIC_BASE_PATH=/castora NEXT_PUBLIC_SITE_URL=https://gonzalo-lozg.me/castora npm run build
 npm run lint
 ```
 
@@ -38,4 +48,4 @@ Ver `.env.example`. El contacto es solo por WhatsApp y redes (no hay formulario)
 - Correo: oculto (`email: null` en `site-config.ts`); poner el real para mostrarlo.
 - Nombres de los acabados (salvo Macadamia).
 - Logo en SVG y fotos en mayor resolución (las actuales miden 549 × 840 px).
-- Dominio: al tenerlo, configurar `NEXT_PUBLIC_SITE_URL` en Vercel.
+- Dominio `castorape.com`: al tenerlo, en `deploy.yml` poner `NEXT_PUBLIC_SITE_URL=https://castorape.com` y `NEXT_PUBLIC_BASE_PATH` vacío, agregar el dominio en Settings → Pages y cambiar el destino de `vercel.json`.

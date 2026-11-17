@@ -40,3 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 !.env.example
+
+# imágenes WebP generadas en el build (scripts/optimize-images.mjs)
+/public/_img/

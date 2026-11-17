@@ -1,6 +1,9 @@
 import { availabilityLabel, products } from "@/data/products";
 import { siteConfig } from "@/data/site-config";
 
+// Export estático (GitHub Pages): se genera una sola vez en el build.
+export const dynamic = "force-static";
+
 /**
  * /llms.txt: resumen en Markdown para asistentes de IA (formato llmstxt.org).
  * Se arma con los mismos datos del sitio, así que se actualiza solo al cambiar

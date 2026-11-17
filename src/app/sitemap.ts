@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { products } from "@/data/products";
 import { siteConfig } from "@/data/site-config";
 
+// Export estático (GitHub Pages): se genera una sola vez en el build.
+export const dynamic = "force-static";
+
 // Fecha del último cambio de contenido de cada página. Actualízala cuando cambie el texto
 // o las fotos de esa página (no hace falta por cambios de diseño o de código).
 const updated = {
@@ -14,7 +17,7 @@ const updated = {
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
   return [
-    { url: base, lastModified: updated.home, changeFrequency: "monthly", priority: 1 },
+    { url: `${base}/`, lastModified: updated.home, changeFrequency: "monthly", priority: 1 },
     ...products.map((p) => ({
       url: `${base}/productos/${p.slug}`,
       lastModified: updated.product,

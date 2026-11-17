@@ -4,7 +4,8 @@ import { siteConfig } from "@/data/site-config";
 type OgImage = { url: string; width: number; height: number; alt: string };
 
 export const defaultOgImage: OgImage = {
-  url: "/og-image.jpg",
+  // Absoluta: con basePath (/castora) una ruta «/og-image.jpg» se resolvería contra la raíz del dominio.
+  url: `${siteConfig.url}/og-image.jpg`,
   width: 1200,
   height: 630,
   alt: "Zapatero Melina de Castora",
